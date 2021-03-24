@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('./vars.css');
+@import url('./reset.css');
+@import url('./typography.css');
+@import url('./characters.css');
+@import url('./forms.css');
+@import url('./about.css');
+@import url('./nav.component.css');
+@import url('./audio-player.component.css');

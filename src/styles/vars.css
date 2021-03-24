@@ -1,0 +1,28 @@
+:root {
+  --brown: #192841;
+  --blue: #a4c1c9;
+  --tan: #294068;
+  --light-green: #85865f;
+  --green: #4f583d;
+  --dark-gray: #191d14;
+  --black: #0f110c;
+  --white: #ffffff;
+  --transparent: #00000000;
+  --transparent-gray: #16181faa;
+  --transparent-black: #06080faa;
+  --transparent-white: #ffffffaa;
+  --transparent-red: #4f161644;
+  --navy-blue: #294068;
+
+  /* --ff-written: 'Indie Flower', cursive; */
+  --ff-written: 'Bangers', cursive;
+  --ff-main: 'Shippori Mincho B1', serif;
+  /* --ff-main: 'Lobster', cursive; */
+
+  /* --font-size: clamp(14px, 1vw, 18px); */
+  --font-size: 1rem;
+
+  --shadow: 0 0 .625rem var(--blue);
+
+  --frame: min(900px, 84%);
+}

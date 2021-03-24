@@ -1,0 +1,42 @@
+/* Style for About.js */
+.about-container > div.about {
+  width: var(--frame);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  margin: auto;
+  box-shadow: var(--shadow);
+  background-color: var(--black);
+  padding: 1rem;
+}
+.about-container > div.about > section.about-input {
+  width: 94%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.about-container > div.about > section.about-input > :is(input, textarea) {
+  color: var(--black);
+}
+.about-container > div.about > section.about-input > button {
+  color: var(--black);
+  grid-column: 1 / 3;
+  width: 94%;
+  margin: 2rem auto;
+}
+.about h1 {
+  color: var(--white);
+}
+.about > .about-section > p.about-text {
+  max-width: 40ch;
+  padding: 1.5rem 0;
+}
+.about > .about-section > p.about-text:not(:last-child) {
+  border-bottom: 1px dashed var(--blue);
+}
+.about .string-input-array section {
+  display: grid;
+  margin: 1rem 0;
+  grid-template-columns: 1fr;
+}

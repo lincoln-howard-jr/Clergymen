@@ -1,0 +1,21 @@
+.form {
+  width: var(--frame);
+  box-shadow: var(--shadow);
+  background-color: var(--black);
+  margin: 0 auto;
+  padding: 1ch;
+}
+.form > header {
+  text-align: center;
+  padding-bottom: var(--font-size);
+  margin-bottom: calc(var(--font-size) * 1.5);
+  border-bottom: 1px solid var(--tan);
+}
+.form > section {
+  margin-bottom: calc(var(--font-size) * 2);
+}
+.form > section > div.input-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 1rem 0;
+}

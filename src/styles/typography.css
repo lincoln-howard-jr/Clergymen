@@ -1,0 +1,61 @@
+:is(input, p, span, button, div, h1, h2, h3, h4, h5, h6, textarea) {
+  margin: 0;
+  padding: 0.125rem 0.25rem;
+  color: var(--blue);
+  font-size: 1rem;
+  line-height: 2.25rem;
+  font-family: var(--ff-main);
+}
+input, textarea, button {
+  color: var(--black);
+}
+textarea {
+  resize: none;
+  overflow: hidden;
+}
+:is(h1, h2, h3, h4, h5, h6, b) {
+  letter-spacing: 1.3px;
+  font-family: var(--ff-written);
+}
+
+h1 {
+  letter-spacing: 4px;
+  color: var(--black);
+  font-size: 3rem;
+  line-height: 4.5rem;
+}
+h2 {
+  font-size: 2rem;
+  line-height: 3rem;
+}
+h3 {
+  font-size: 1.8rem;
+  line-height: 2.7rem;
+}
+h4 {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+h5 {
+  font-size: 1.4rem;
+  line-height: 2.1rem;
+}
+h6, b {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+
+@media (max-width: 1099px) {
+  :is(h1, h2, h3, h4, h5, h6):not(.short) {
+    display: none;
+  }
+}
+@media (min-width: 1100px) {
+  :is(h1, h2, h3, h4, h5, h6):is(.short) {
+    display: none;
+  }
+}
+
+.text-center { 
+  text-align: center;
+}
