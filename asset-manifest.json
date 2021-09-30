@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Clergymen/static/css/main.91ca719f.chunk.css",
-    "main.js": "/Clergymen/static/js/main.7ff69e55.chunk.js",
-    "main.js.map": "/Clergymen/static/js/main.7ff69e55.chunk.js.map",
+    "main.js": "/Clergymen/static/js/main.a9ef2d47.chunk.js",
+    "main.js.map": "/Clergymen/static/js/main.a9ef2d47.chunk.js.map",
     "runtime-main.js": "/Clergymen/static/js/runtime-main.35cb8323.js",
     "runtime-main.js.map": "/Clergymen/static/js/runtime-main.35cb8323.js.map",
     "static/js/2.ffd4a646.chunk.js": "/Clergymen/static/js/2.ffd4a646.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.35cb8323.js",
     "static/js/2.ffd4a646.chunk.js",
     "static/css/main.91ca719f.chunk.css",
-    "static/js/main.7ff69e55.chunk.js"
+    "static/js/main.a9ef2d47.chunk.js"
   ]
 }
