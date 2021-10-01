@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Clergymen/static/css/main.1b0cdc03.chunk.css",
-    "main.js": "/Clergymen/static/js/main.f1820b2f.chunk.js",
-    "main.js.map": "/Clergymen/static/js/main.f1820b2f.chunk.js.map",
+    "main.css": "/Clergymen/static/css/main.ef4b911d.chunk.css",
+    "main.js": "/Clergymen/static/js/main.6f830d97.chunk.js",
+    "main.js.map": "/Clergymen/static/js/main.6f830d97.chunk.js.map",
     "runtime-main.js": "/Clergymen/static/js/runtime-main.35cb8323.js",
     "runtime-main.js.map": "/Clergymen/static/js/runtime-main.35cb8323.js.map",
     "static/js/2.a793c0b2.chunk.js": "/Clergymen/static/js/2.a793c0b2.chunk.js",
     "static/js/2.a793c0b2.chunk.js.map": "/Clergymen/static/js/2.a793c0b2.chunk.js.map",
     "index.html": "/Clergymen/index.html",
-    "static/css/main.1b0cdc03.chunk.css.map": "/Clergymen/static/css/main.1b0cdc03.chunk.css.map",
+    "static/css/main.ef4b911d.chunk.css.map": "/Clergymen/static/css/main.ef4b911d.chunk.css.map",
     "static/js/2.a793c0b2.chunk.js.LICENSE.txt": "/Clergymen/static/js/2.a793c0b2.chunk.js.LICENSE.txt",
     "static/media/nav.de37125c.svg": "/Clergymen/static/media/nav.de37125c.svg",
     "static/media/play.c0a9fbaf.svg": "/Clergymen/static/media/play.c0a9fbaf.svg",
@@ -17,7 +17,7 @@
   "entrypoints": [
     "static/js/runtime-main.35cb8323.js",
     "static/js/2.a793c0b2.chunk.js",
-    "static/css/main.1b0cdc03.chunk.css",
-    "static/js/main.f1820b2f.chunk.js"
+    "static/css/main.ef4b911d.chunk.css",
+    "static/js/main.6f830d97.chunk.js"
   ]
 }
