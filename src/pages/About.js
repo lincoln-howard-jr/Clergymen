@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useApp } from "../AppProvider";
-import { H1, H3 } from "../components/Headers";
+import { H1 } from "../components/Headers";
 import StringArrayInput from "../components/StringArrayInput";
 
 export default function About () {
-  const {router: {page, redirect}, auth: {user}, channel: {channelInfo, updateChannelInfo}, uploads: {createUpload}, useForm, freeze} = useApp ();
+  const {router: {page}, auth: {user}, channel: {channelInfo, updateChannelInfo}, uploads: {createUpload}, useForm, freeze} = useApp ();
   const [editor, edit] = useState (false); 
 
   const {set, get, submit} = useForm (values => {
@@ -15,7 +15,7 @@ export default function About () {
   const imageRef = useRef ();
   const [image, setImage] = useState (null);
   useEffect (() => {
-    if (channelInfo && channelInfo.image && channelInfo.image.url) setImage (`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${channelInfo.image.url}`);
+    if (channelInfo && channelInfo.image && channelInfo.image.url) setImage (`https://d1q33inlkclwle.cloudfront.net/${channelInfo?.image?.url}`);
   }, [channelInfo])
 
   const clickImage = () => imageRef.current.click ();
@@ -34,7 +34,7 @@ export default function About () {
       })
       console.log (upload);
       set ('image') (upload.id);
-      setImage (`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${upload.url}`);
+      setImage (`https://d1q33inlkclwle.cloudfront.net/${upload.url}`);
       unfreeze ();
     } catch (e) {
       console.log (e);
@@ -43,14 +43,22 @@ export default function About () {
     }
   }
 
-  if (page !== '/about' && page !== '/') return '';
-  if (!channelInfo) return '';
+  let routes = [
+    '/Clergymen/?page=admin',
+    '/Clergymen/?page=characters',
+    '/Clergymen/?page=contact',
+    '/Clergymen/?page=create-character',
+    '/Clergymen/?page=create-episode',
+    '/Clergymen/?page=edit-about',
+    '/Clergymen/?page=episodes',
+    '/Clergymen/?page=edit-episode',
+    '/Clergymen/?page=edit-character'
+  ]
 
+  if (!!routes.find (r => page.startsWith (r))) return null;
+  if (!channelInfo) return '';
   if (editor) return (
     <>
-      <div className="text-center">
-        <H1>Edit Channel Info</H1>
-      </div>
       <main onSubmit={e => e.preventDefault ()} className="about-container">
         <div className="about">
           <section className="about-input">
@@ -100,6 +108,7 @@ export default function About () {
   )
 
   return (
+    <>
     <main className="about-container">
       <div className="about">
         <section className="about-section">
@@ -110,8 +119,8 @@ export default function About () {
               <a onClick={() => {edit (true)}}>Edit</a>
             }
           </div>
-          <div className="circle-image-container">
-            <img src={`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${channelInfo.image.url}`} />
+          <div className="about-image">
+            <img src={`https://d1q33inlkclwle.cloudfront.net/${channelInfo?.image?.url}`} />
           </div>
         </section>
         <section className="about-section">
@@ -122,5 +131,6 @@ export default function About () {
         </section>
       </div>
     </main>
+    </>
   )
 }

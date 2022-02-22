@@ -4,19 +4,21 @@ import {H1, H2, H3} from '../components/Headers'
 
 export default function EditCharacter () {
   
-  const {auth: {user}, router: {page}, characters: {characters, updateCharacter}, uploads: {createUpload}, useForm, freeze} = useApp ();
+  const {auth: {isAuthenticated}, router: {page, redirect}, characters: {characters, updateCharacter, deleteCharacter}, uploads: {createUpload}, useForm, freeze} = useApp ();
   
   const [character, setCharacter] = useState (null);
   const getCharacter = () => {
-    let cid = page.split ('/') [2];
-    let match = characters.filter (c => c.id === cid);
-    let _character = match.length ? match [0] : null;
-    setCharacter (_character);
+    let params = new URLSearchParams (page.split ('?') [1]);
+    let cid = params.get ('id');
+    setCharacter (characters.find (c => c.id === cid));
   }
   useEffect (() => {
     getCharacter ();
   }, [characters, page])
-  const {set, submit} = useForm (val => updateCharacter (character.id, val));
+  const {set, submit} = useForm (async val => {
+    await updateCharacter (character.id, val);
+    redirect ('/Clergymen/?page=characters');
+  });
   const characterPictureRef = useRef ();
   const actorPictureRef = useRef ();
 
@@ -42,7 +44,7 @@ export default function EditCharacter () {
       })
       console.log (upload);
       set ('characterPicture') (upload.id);
-      setCharacter (char => Object.assign (char, {characterPicture: {url: `https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${upload.url}`}}))
+      setCharacter (char => Object.assign (char, {characterPicture: {url: `https://d1q33inlkclwle.cloudfront.net/${upload.url}`}}))
       unfreeze ();
     } catch (e) {
       console.log (e);
@@ -65,7 +67,7 @@ export default function EditCharacter () {
         body: actorPictureRef.current.files [0]
       })
       set ('actorPicture') (upload.id);
-      setCharacter (char => Object.assign (char, {actorPicture: {url: `https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${upload.url}`}}))
+      setCharacter (char => Object.assign (char, {actorPicture: {url: `https://d1q33inlkclwle.cloudfront.net/${upload.url}`}}))
       unfreeze ();
     } catch (e) {
       console.log (e);
@@ -74,9 +76,9 @@ export default function EditCharacter () {
     }
   }
 
-  if (!user) return '';
-  if (!page.startsWith ('/edit-character/')) return '';
-  if (!character) return '';
+  if (!isAuthenticated) return null;
+  if (!character) return null;
+  if (!page.startsWith ('/Clergymen/?page=edit-character')) return null;
   return (
     <main>
       <div className="text-center">
@@ -84,7 +86,7 @@ export default function EditCharacter () {
       </div>
       <div className="form">
         <header>
-          <H2>Add Character</H2>
+          <H2>{character.characterName}/{character.actorName}</H2>
         </header>
         <section>
           <H3>Character Info</H3>
@@ -109,7 +111,7 @@ export default function EditCharacter () {
             {
               !!character.characterPicture &&
               <div className="circle-image-container">
-                <img onClick={clickCharacterPicture} src={`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${character.characterPicture.url}`} />
+                <img onClick={clickCharacterPicture} src={`https://d1q33inlkclwle.cloudfront.net/${character.characterPicture.url}`} />
               </div>
             }
             <input type="file" accept="image/png, image/jpg, image/jpeg" hidden ref={characterPictureRef} onChange={actuallyUploadCharacterPicture} />
@@ -138,13 +140,22 @@ export default function EditCharacter () {
             {
               !!character.actorPicture &&
               <div className="circle-image-container">
-                <img onClick={clickActorPicture} src={`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${character.actorPicture.url}`} />
+                <img onClick={clickActorPicture} src={`https://d1q33inlkclwle.cloudfront.net/${character.actorPicture.url}`} />
               </div>
             }
             <input type="file" accept="image/png, image/jpg, image/jpeg" hidden ref={actorPictureRef} onChange={actuallyUploadActorPicture} />
           </div>
         </section>
-        <button onClick={submit}>Submit Changes</button>
+        <div className="button-group">
+          <button onClick={submit}>Submit Changes</button>
+          <button onClick={async () => {
+            try {
+              await deleteCharacter (character.id)
+              redirect ('/Clergymen/?page=characters')
+            } catch (e) {
+            }
+          }}>Delete Character</button>
+        </div>
       </div>
     </main>
   )

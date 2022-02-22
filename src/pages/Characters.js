@@ -14,14 +14,14 @@ export default function Characters () {
     setFlipped (fl => [...fl, id]);
   }
 
-  if (page !== '/characters') return '';
+  if (page !== '/Clergymen/?page=characters') return '';
   return (
     <>
       <div className="text-center">
         <H1>Characters:</H1>
         {
           user &&
-          <a onClick={redirect ('/create-character')}>Add Character</a>
+          <a onClick={redirect ('/Clergymen/?page=create-character')}>Add Character</a>
         }
       </div>
       <main>
@@ -39,7 +39,7 @@ export default function Characters () {
                 {
                   user &&
                   <div className="text-center">
-                    <a onClick={redirect (`/edit-character/${character.id}`)}>Edit</a>
+                    <a onClick={redirect (`/Clergymen/?page=edit-character&id=${character.id}`)}>Edit</a>
                   </div>
                 }
               </div>
@@ -50,7 +50,7 @@ export default function Characters () {
                 (!flipped.includes (character.id) && character.characterPicture && character.characterPicture.url) &&
                 (
                   <div className="character-image">
-                    <img src={`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${character.characterPicture.url}`} />
+                    <img src={`https://d1q33inlkclwle.cloudfront.net/${character.characterPicture.url}`} />
                   </div>
                 )
               }
@@ -58,7 +58,7 @@ export default function Characters () {
                 (flipped.includes (character.id) && character.characterPicture && character.characterPicture.url) &&
                 (
                   <div className="character-image">
-                    <img src={`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${character.actorPicture.url}`} />
+                    <img src={`https://d1q33inlkclwle.cloudfront.net/${character.actorPicture.url}`} />
                   </div>
                 )
               }

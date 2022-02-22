@@ -19,3 +19,40 @@
   grid-template-columns: 1fr 1fr;
   margin: 1rem 0;
 }
+div[contenteditable], div[contenteditable]:focus {
+  cursor: caret;
+  outline: 0;
+  border-left: 1px dashed var(--blue);
+  padding: 0 12px;
+  margin: 12px auto;
+  user-select: text;
+}
+button {
+  transition: 0.2s;
+  cursor: pointer;
+  border-radius: 1rem;
+  padding: 2px 12px;
+  line-height: 2rem;
+  border: 1px solid var(--blue);
+  background-color: var(--white);
+  box-shadow: var(--button-shadow);
+}
+@media (hover: hover) {
+  button:hover {
+    box-shadow: var(--button-hover-shadow);
+  }
+}
+.button-group > button {
+  display: inline;
+  padding: 0 12px;
+  margin: 4px 0;
+  border: 1px solid black;
+}
+.button-group > button:not(:last-child) {
+  border-right: 0 solid black;
+}
+@media (max-width: 1099px) {
+  .form > section > div.input-group {
+    grid-template-columns: 1fr;
+  }
+}

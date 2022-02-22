@@ -4,7 +4,7 @@ export default function StringArrayInput ({onChange, defaultValue=[]}) {
   const [array, setArray] = useState (defaultValue)
   const set = index => e => {
     let arr = [...array];
-    arr [index] = e.target.value;
+    arr [index] = e.target.innerText;
     setArray (arr);
     onChange (arr);
   }
@@ -19,15 +19,12 @@ export default function StringArrayInput ({onChange, defaultValue=[]}) {
     setArray (arr);
     onChange (arr);
   }
-  const updateHeight = e => {
-    e.target.style.height = `${e.target.scrollHeight}px`;
-  }
   return (
     <>
       {
         array.map ((text, index) => (
           <section>
-            <textarea defaultValue={text} onChange={set (index)} onFocus={updateHeight} />
+            <div contentEditable onBlur={set (index)} >{text}</div>
             <button onClick={removeSection (index)}>Remove Section</button>
           </section>
         ))

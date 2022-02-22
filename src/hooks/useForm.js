@@ -16,6 +16,10 @@ export default function useForm (onSubmit=v=>console.log (v), defaultValues={}, 
     setValues (values => Object.assign (values, {[name]: e}));
   }
 
+  const setAll = obj => {
+    setValues (obj);
+  }
+
   const get = name => {
     return values [name];
   }
@@ -49,6 +53,6 @@ export default function useForm (onSubmit=v=>console.log (v), defaultValues={}, 
     }
   });
 
-  return {set, get, status, submit};
+  return {set, setAll, get, status, submit};
 
 }

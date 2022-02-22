@@ -1,14 +1,14 @@
 nav#nav {
   position: fixed;
   left: 1rem;
-  top: 2rem;
+  top: 1rem;
   width: 2rem;
   height: 2rem;
   transition: 0.5s;
 }
 nav#nav + div#nav-overlay {
   display: grid;
-  background-color: var(--transparent-red);
+  background-color: var(--transparent-black);
   position: fixed;
   left: 0;
   top: 0;
@@ -16,7 +16,6 @@ nav#nav + div#nav-overlay {
   height: 100vh;
   z-index: -1;
   opacity: 0;
-  grid-template-columns: 1fr min-content 1fr;
   align-items: center;
   justify-items: center;
   justify-content: center;
@@ -27,14 +26,15 @@ nav#nav + div#nav-overlay > ul {
   display: grid;
   grid-column: 2;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  width: min(35ch, 94vw);
-  height: 75vh;
+  width: min(35ch, 75vw);
+  height: 50vh;
   padding: 0;
   align-items: center;
   justify-content: center;
   text-align: center;
   background-color: var(--black);
   list-style-type: none;
+  transform: translateY(-10vh);
 }
 nav#nav + div#nav-overlay > ul > li {
   font-family: var(--ff-written);
@@ -46,9 +46,11 @@ nav#nav + div#nav-overlay > ul > li {
   padding: 0;
   transition: 0.2s;
 }
-nav#nav + div#nav-overlay > ul > li:hover {
-  background-color: var(--transparent-white);
-  color: var(--black);
+@media (hover: hover) {
+  nav#nav + div#nav-overlay > ul > li:hover {
+    background-color: var(--transparent-white);
+    color: var(--black);
+  }
 }
 nav#nav.open {
   transform: rotate(90deg);
@@ -56,4 +58,27 @@ nav#nav.open {
 nav#nav.open + div#nav-overlay {
   z-index: 10;
   opacity: 1;
+}
+@media (max-width: 500px) {
+  nav#nav {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    top: unset;
+    left: unset;
+    right: 1.25rem;
+    bottom: 2.25rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--light-navy-blue);
+    box-shadow: 3px 3px 6px var(--transparent-dark-blue),
+                -2px -2px 4px var(--transparent-blue),
+                -2px 2px 4px var(--transparent-blue),
+                3px -3px 6px var(--transparent-dark-blue);
+  }
+  nav#nav img {
+    width: 45%;
+    filter: invert(1);
+  }
 }

@@ -1,0 +1,36 @@
+main h1 {
+  font-size: 4rem;
+  text-align: center;
+}
+div.row {
+  width: 100%;
+  display: grid;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+div.row.cols-2 {
+  grid-template-columns: 1fr 1fr;
+}
+div.row.cols-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+div.row.cols-4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+div.row > div {
+  width: 100%;
+  max-width: 55ch;
+  margin: auto;
+}
+div.text-center {
+  align-items: center;
+}
+div.image {
+  text-align: center;
+}
+div.image img {
+  width: 80%;
+  margin: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}

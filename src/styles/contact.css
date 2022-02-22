@@ -1,0 +1,12 @@
+main.contact-page {
+  width: var(--frame);
+  box-shadow: var(--shadow);
+  background-color: var(--black);
+  padding: 1rem;
+}
+.contact-message {
+  padding: 0.5rem;
+}
+.conact-message:not(:last-child) {
+  border-bottom: 1px dashed var(--blue);
+}

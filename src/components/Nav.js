@@ -22,10 +22,10 @@ export default function Nav () {
       </nav>
       <div id="nav-overlay" ref={overlayRef} onClick={close}>
         <ul>
-          <li onClick={rac ('/about')}>About</li>
-          <li onClick={rac ('/episodes')}>Episodes</li>
-          <li onClick={rac ('/characters')}>Characters</li>
-          <li onClick={rac ('/contact')}>Contact</li>
+          <li onClick={rac ('/Clergymen/?page=about')}>About</li>
+          <li onClick={rac ('/Clergymen/?page=episodes')}>Episodes</li>
+          <li onClick={rac ('/Clergymen/?page=characters')}>Characters</li>
+          <li onClick={rac ('/Clergymen/?page=contact')}>Contact</li>
         </ul>
       </div>
     </>

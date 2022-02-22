@@ -1,0 +1,22 @@
+nav {
+  margin: 0;
+  padding: 1rem;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 128px 1fr 1fr;
+  grid-template-areas: "link-1 link-2 logo link-3 link-4";
+}
+nav .nav-logo {
+  grid-area: logo;
+  cursor: pointer;
+}
+nav .nav-link {
+  transition: 0.2s;
+  padding: 1rem;
+  cursor: pointer;
+  text-decoration: underline #ffffff00;
+}
+nav .nav-link:hover {
+  text-decoration: underline var(--font-color);
+}

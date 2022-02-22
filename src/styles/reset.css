@@ -11,12 +11,8 @@
   box-sizing: border-box;
   user-select: none;
 }
-#root {
-  padding: 0.825rem 0 5rem 0;
-  background: var(--tan);
-}
-main {
-  margin-top: 2.25rem;
+input, textarea {
+  user-select: text;
 }
 img {
   width: 100%;
@@ -28,8 +24,8 @@ div.circle-image-container {
   display: grid;
   padding: 0;
   align-items: center;
-  width: min(15ch, 200px);
-  height: min(15ch, 200px);
+  width: min(10ch, 200px);
+  height: min(10ch, 200px);
   border-radius: 50%;
   border: 1px solid var(--brown);
   box-shadow: 0 0 5px var(--brown);

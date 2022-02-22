@@ -1,13 +1,13 @@
 :is(input, p, span, button, div, h1, h2, h3, h4, h5, h6, textarea) {
   margin: 0;
   padding: 0.125rem 0.25rem;
-  color: var(--blue);
-  font-size: 1rem;
+  color: var(--font-color);
+  font-size: var(--font-size);
   line-height: 2.25rem;
   font-family: var(--ff-main);
 }
 input, textarea, button {
-  color: var(--black);
+  color: var(--font-color);
 }
 textarea {
   resize: none;
@@ -20,7 +20,7 @@ textarea {
 
 h1 {
   letter-spacing: 4px;
-  color: var(--black);
+  color: var(--font-color);
   font-size: 3rem;
   line-height: 4.5rem;
 }

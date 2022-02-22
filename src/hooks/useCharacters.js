@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { headers } from "../lib/auth";
 
-export default function useCharacters () {
+export default function useCharacters (freeze) {
 
   // state management
   const [characters, setCharacters] = useState ([]);
@@ -22,6 +22,7 @@ export default function useCharacters () {
 
   // mutators
   const createCharacter = async character => new Promise (async (resolve, reject) => {
+    let unfreeze = freeze ();
     try {
       let req = await fetch ('https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/characters', {
         method: 'post',
@@ -29,14 +30,18 @@ export default function useCharacters () {
         body: JSON.stringify (character)
       })
       let res = await req.json ();
+      await getCharacters ();
       resolve (res);
     } catch (e) {
       setErr (e);
       reject (e);
+    } finally {
+      unfreeze ();
     }
   });
 
   const updateCharacter = async (id, character) => new Promise (async (resolve, reject) => {
+    let unfreeze = freeze ();
     try {
       let req = await fetch (`https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/characters/${id}`, {
         method: 'PUT',
@@ -44,17 +49,36 @@ export default function useCharacters () {
         body: JSON.stringify (character)
       })
       let res = await req.json ();
+      await getCharacters ();
       resolve (res);
     } catch (e) {
       setErr (e);
       reject (e);
+    } finally {
+      unfreeze ();
     }
   });
+
+  const deleteCharacter = async id => new Promise (async (resolve, reject) => {
+    let unfreeze = freeze ();
+    try {
+      await fetch (`https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/characters/${id}`, {
+        method: 'delete',
+        headers: headers.get
+      })
+      await getCharacters ();
+      resolve ();
+    } catch (e) {
+      reject (e);
+    } finally {
+      unfreeze ();
+    }
+  })
 
   useEffect (() => {
     getCharacters ();
   }, []);
 
-  return {characters, err, getCharacters, createCharacter, updateCharacter};
+  return {characters, err, getCharacters, createCharacter, updateCharacter, deleteCharacter};
 
 }

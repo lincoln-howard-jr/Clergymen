@@ -6,9 +6,11 @@ export default function CreateEpisode () {
 
   const {router: {page}, auth: {user}, episodes: {createEpisode}, uploads: {createUpload}, useForm, freeze} = useApp ();
   const {get, set, submit} = useForm (values => {
+    let [y, m, d] = values.releaseDate.split ('-');
     let body = Object.assign (values, {
       episodeNumber: parseInt (values.episodeNumber),
-      seasonNumber: parseInt (values.seasonNumber)
+      seasonNumber: parseInt (values.seasonNumber),
+      releaseDate: new Date (y, m, d)
     })
     createEpisode (body);
   });
@@ -29,7 +31,7 @@ export default function CreateEpisode () {
         body: uploadCoverPhotoRef.current.files [0]
       })
       set ('coverPhoto') (upload.id);
-      setCoverPhotoUrl (`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${upload.url}`);
+      setCoverPhotoUrl (`https://d1q33inlkclwle.cloudfront.net/${upload.url}`);
       unfreeze ();
     } catch (e) {
       console.log (e);
@@ -52,7 +54,7 @@ export default function CreateEpisode () {
         body: uploadAudioSourceRef.current.files [0]
       })
       set ('audioSource') (upload.id);
-      setAudioSourceUrl (`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${upload.url}`);
+      setAudioSourceUrl (`https://d1q33inlkclwle.cloudfront.net/${upload.url}`);
       unfreeze ();
     } catch (e) {
       console.log (e);
@@ -68,7 +70,7 @@ export default function CreateEpisode () {
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
   if (!user) return '';
-  if (page !== '/create-episode') return '';
+  if (page !== '/Clergymen/?page=create-episode') return '';
   
   return (
     <main>
@@ -130,7 +132,7 @@ export default function CreateEpisode () {
             <input type="file" accept="audio/mp3" hidden ref={uploadAudioSourceRef} onChange={uploadAudioSource} />
           </div>
         </section>
-        <button onClick={submit}>Add Character</button>
+        <button onClick={submit}>Add Episode</button>
       </div>
     </main>
   )

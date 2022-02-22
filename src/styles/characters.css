@@ -35,7 +35,7 @@
   grid-column: 2;
 }
 .character-card > div.character-info {
-  width: min(34vw, 275px);
+  width: min(30ch, 275px);
   margin: auto;
 }
 .character-card > div.character-info:first-child:last-child {
@@ -46,8 +46,8 @@ div.character-card > div.character-image {
   display: grid;
   align-items: center;
   padding: 0;
-  width: min(34vw, 225px);
-  height: min(34vw, 225px);
+  width: min(10ch, 225px);
+  height: min(10ch, 225px);
   border-radius: 50%;
   box-shadow: var(--shadow);
   margin: var(--font-size) auto;

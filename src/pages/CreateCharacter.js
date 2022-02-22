@@ -34,7 +34,7 @@ export default function CreateCharacter () {
       })
       console.log (upload);
       set ('characterPicture') (upload.id);
-      setCharacterPic (`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${upload.url}`);
+      setCharacterPic (`https://d1q33inlkclwle.cloudfront.net/${upload.url}`);
       unfreeze ();
     } catch (e) {
       console.log (e);
@@ -57,7 +57,7 @@ export default function CreateCharacter () {
         body: actorPictureRef.current.files [0]
       })
       set ('actorPicture') (upload.id);
-      setActorPic (`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${upload.url}`);
+      setActorPic (`https://d1q33inlkclwle.cloudfront.net/${upload.url}`);
       unfreeze ();
     } catch (e) {
       console.log (e);
@@ -69,7 +69,7 @@ export default function CreateCharacter () {
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
   if (!user) return '';
-  if (!page.startsWith ('/create-character')) return '';
+  if (!page.startsWith ('/Clergymen/?page=create-character')) return '';
 
   return (
     <main>

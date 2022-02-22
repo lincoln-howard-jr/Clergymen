@@ -1,4 +1,14 @@
+@font-face {
+  font-family: Glacial Indifference;
+  src: url('./GlacialIndifference-Regular.otf');
+}
+@font-face {
+  font-family: Moontime;
+  src: url('./MoonTime-Regular.otf');
+}
 :root {
+  --background-color: #d4c29a;
+  --font-color: #660b0b;
   --brown: #192841;
   --blue: #a4c1c9;
   --tan: #294068;
@@ -11,18 +21,25 @@
   --transparent-gray: #16181faa;
   --transparent-black: #06080faa;
   --transparent-white: #ffffffaa;
+  --transparent-blue: #5e80bbc2;
+  --transparent-dark-blue: #12479bcb;
   --transparent-red: #4f161644;
   --navy-blue: #294068;
+  --light-navy-blue: linear-gradient(45deg, #3d4d7055, #1d325f33);
+  --light-navy-blue-thicc: linear-gradient(45deg, #3d4d7098, #1d325faf);
 
   /* --ff-written: 'Indie Flower', cursive; */
-  --ff-written: 'Bangers', cursive;
-  --ff-main: 'Shippori Mincho B1', serif;
+  /* --ff-written: 'Bangers', cursive; */
+  --ff-written: 'Moontime', sans-serif;
+  --ff-main: 'Glacial Indifference', sans-serif;
   /* --ff-main: 'Lobster', cursive; */
 
   /* --font-size: clamp(14px, 1vw, 18px); */
-  --font-size: 1rem;
+  --font-size: 1.25rem;
 
   --shadow: 0 0 .625rem var(--blue);
+  --button-shadow: 0.125rem 0.125rem .25rem var(--blue);
+  --button-hover-shadow: 0.2rem 0.2rem .325rem var(--blue);
 
-  --frame: min(900px, 84%);
+  --frame: min(900px, 100%);
 }

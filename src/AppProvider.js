@@ -2,7 +2,8 @@
 import React, { createContext, useState } from "react";
 import AudioPlayer from "./components/AudioPlayer";
 import {H1} from './components/Headers';
-import {useAuth, useCharacters, useForm, useRouter, useEpisodes, useChannelInfo} from './hooks';
+import {useAuth, useCharacters, useForm, useRouter, useEpisodes, useChannelInfo, useContact} from './hooks';
+import usePages from "./hooks/usePages";
 import useUploads from "./hooks/useUploads";
 // react context api
 const AppContext = createContext ();
@@ -12,6 +13,7 @@ export const useApp = () => React.useContext (AppContext);
 export default function AppProvider ({children}) {
 
   // podcast player
+  const [podcastId, setPodcastId] = useState (null);
   const [podcastSrc, setPodcastSrc] = useState (null);
   const [podcastTitle, setPodcastTitle] = useState (null);
   const [podcastCoverPhoto, setPodcastCoverPhoto] = useState (null);
@@ -20,9 +22,10 @@ export default function AppProvider ({children}) {
 
   const togglePlay = () => setPodcastPlaying (!podcastPlaying);
   const setPodcast = episode => e => {
-    setPodcastSrc (`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${episode.audioSource.url}`)
-    setPodcastCoverPhoto (`https://clergymen-file-bucket-3-8-2021.s3.amazonaws.com/${episode.coverPhoto.url}`);
+    setPodcastSrc (`https://d1q33inlkclwle.cloudfront.net/${episode.audioSource.url}`)
+    setPodcastCoverPhoto (`https://d1q33inlkclwle.cloudfront.net/${episode.coverPhoto.url}`);
     setPodcastTitle (episode.title);
+    setPodcastId (episode.id);
   }
 
   // freeze/unfreeze animation
@@ -35,20 +38,23 @@ export default function AppProvider ({children}) {
   }
 
   // hooks
-  const characters = useCharacters ();
-  const episodes = useEpisodes ();
-  const uploads = useUploads ();
-  const router = useRouter ();
-  const channel = useChannelInfo ();
+  const characters = useCharacters (freeze);
+  const router = useRouter (freeze);
+  const pages = usePages (router);
+  const channel = useChannelInfo (freeze);
+  const contact = useContact (freeze);
   // called when the user is authenticated
   function onSessionActive () {
-  }
+    contact.getMessages ();
+  };
   // auth hook
-  const auth = useAuth (onSessionActive);
+  const auth = useAuth (onSessionActive, freeze);
+  const uploads = useUploads (auth, freeze);
+  const episodes = useEpisodes (freeze, auth);
 
   // just wrap the whole app component in this
   return (
-    <AppContext.Provider value={{router, auth, characters, uploads, episodes, channel, togglePlay, setPodcast, freeze, useForm}} >
+    <AppContext.Provider value={{pages, router, auth, characters, uploads, episodes, channel, contact, podcastId, podcastPlaying, togglePlay, setPodcast, freeze, useForm}} >
       <div style={{
         display: (!frozen ? 'none' : 'grid'),
         alignItems: 'center',
