@@ -1,5 +1,7 @@
 import { useApp } from "../AppProvider";
 import House from '../img/nomadic-julien-rV8ihhCauO0-unsplash.jpg';
+import Image from "./display-components/Image";
+import Text from "./display-components/Text";
 
 const details = {
   page: 'about',
@@ -65,8 +67,8 @@ function Row (props) {
       {
         props.row.contents.map (col => (
           <div className={col.type}>
-            {col.type === 'text' && <p>{col.value}</p>}
-            {col.type === 'image' && <img src={col.value} />}
+            {col.type === 'text' && <Text col={col} /> }
+            {col.type === 'image' && <Image col={col} />}
             {col.type === 'row' && <Row row={col.value} />}
           </div>
         ))

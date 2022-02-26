@@ -8,7 +8,14 @@ export default function usePages (router, user, freeze) {
 
   const getPages = async () => {
     let req = await fetch ('https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/pages');
-    setPages (await req.json ());
+    let pages = await req.json ();
+    pages = pages.reduce ((acc, val) => {
+      let idx = acc.findIndex (p => p.page === val.page);
+      if (idx === -1) return [...acc, val];
+      if (val.createdAt < acc [idx].createdAt) return [...acc];
+      return [...acc.filter (p => p.page !== val.page), val];
+    }, [])
+    setPages (pages)
   }
 
   const getPageByName = name => {

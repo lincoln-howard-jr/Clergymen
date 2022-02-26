@@ -45,17 +45,19 @@ h6, b {
   line-height: 1.8rem;
 }
 
-@media (max-width: 1099px) {
-  :is(h1, h2, h3, h4, h5, h6):not(.short) {
-    display: none;
-  }
-}
-@media (min-width: 1100px) {
-  :is(h1, h2, h3, h4, h5, h6):is(.short) {
-    display: none;
-  }
-}
-
 .text-center { 
   text-align: center;
+}
+.align-center { 
+  text-align: center;
+}
+.align-left { 
+  text-align: left;
+}
+.align-right { 
+  text-align: right;
+}
+.link {
+  color: var(--link-color);
+  cursor: pointer;
 }

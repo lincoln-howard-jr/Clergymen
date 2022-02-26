@@ -1,3 +1,29 @@
+main {
+  margin-bottom: 5rem;
+}
+.dropable:not(.trash) {
+  height: 2rem;
+  margin: 0 4rem;
+}
+.dropable.trash {
+  display: none;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 2rem;
+  height: 100vh;
+}
+main.dragging .dropable {
+  background-color: #cccccc66;
+}
+main.dragging .dropable.trash {
+  display: grid;
+  background-color: #ff000033;
+}
+.editable {
+  padding: 1rem 0;
+}
 .component-selector {
   z-index: 10;
   display: grid;
@@ -33,4 +59,7 @@
 }
 .component-selector .component span {
   font-size: 2rem;
+}
+.hovering {
+  background-color: #ffffff44;
 }

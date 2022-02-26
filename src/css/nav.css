@@ -1,5 +1,6 @@
 nav {
   margin: 0;
+  width: 100vw;
   padding: 1rem;
   display: grid;
   align-items: center;

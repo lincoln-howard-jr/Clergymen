@@ -1,0 +1,16 @@
+.editable-image {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-rows: 1fr 2rem;
+}
+.editable-image > img {
+    width: 67%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+.editable-image .toolbar span {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+}

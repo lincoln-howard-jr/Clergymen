@@ -3,7 +3,6 @@
   padding: 0;
   left: 0;
   top: 0;
-  position: absolute;
   width: 100vw;
   min-height: 100vh;
 }
@@ -20,19 +19,6 @@ img {
 img.invert {
   filter: invert(1);
 }
-div.circle-image-container {
-  display: grid;
-  padding: 0;
-  align-items: center;
-  width: min(10ch, 200px);
-  height: min(10ch, 200px);
-  border-radius: 50%;
-  border: 1px solid var(--brown);
-  box-shadow: 0 0 5px var(--brown);
-  margin: 1rem auto;
-  overflow: hidden;
-}
-div.circle-image-container > img {
-  min-width: 100%;
-  min-height: 100%;
+#root {
+  width: 100vw;
 }

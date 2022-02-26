@@ -40,7 +40,6 @@ export default function AppProvider ({children}) {
   // hooks
   const characters = useCharacters (freeze);
   const router = useRouter (freeze);
-  const pages = usePages (router);
   const channel = useChannelInfo (freeze);
   const contact = useContact (freeze);
   // called when the user is authenticated
@@ -51,6 +50,7 @@ export default function AppProvider ({children}) {
   const auth = useAuth (onSessionActive, freeze);
   const uploads = useUploads (auth, freeze);
   const episodes = useEpisodes (freeze, auth);
+  const pages = usePages (router, auth, freeze);
 
   // just wrap the whole app component in this
   return (

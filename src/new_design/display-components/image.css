@@ -1,0 +1,10 @@
+img.image {
+    display: block;
+    margin: auto;
+    width: 67%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+img.image.sepia {
+    filter: sepia(0.7) brightness(0.7);
+}

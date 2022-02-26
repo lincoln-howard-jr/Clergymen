@@ -19,10 +19,10 @@ function Auth () {
     }
   }
   
-  if (page !== '/Clergymen/?page=admin') return '';
+  if (page !== 'admin') return '';
   if (isFirstLogin) return (
-    <div>
-      <H2>Create New Password</H2>
+    <main>
+      <h1>Create New Password</h1>
       <div className="input-group">
         <label>Password</label>
         <input type="password" value={password} placeholder="password" onChange={e => setPassword (e.target.value)} />
@@ -30,32 +30,38 @@ function Auth () {
       <div className="input-group">
         <button onClick={() => completePasswordChallenge (password)}>Set New Password</button>
       </div>
-    </div>
+    </main>
   )
   if (!isAuthenticated) return (
-    <main className="">
-      <H2>Log In</H2>
+    <main>
+      <h1>Log In</h1>
       {
         err &&
         <div className="input-group">
           <label>Error: {err.toString ()}</label>
         </div>
       }
-      <div className="input-group">
-        <label>Username</label>
-        <input value={username} placeholder="Username" onChange={e => setUsername (e.target.value)} />
+      <div className="row cols-2 text-center">
+        <div className="input-group">
+          <label>Username</label>
+          <br />
+          <input value={username} placeholder="Username" name="username" onChange={e => setUsername (e.target.value)} />
+        </div>
+        <div className="input-group">
+          <label>Password</label>
+          <br />
+          <input type="password" value={password} placeholder="password" onChange={e => setPassword (e.target.value)} />
+        </div>
       </div>
-      <div className="input-group">
-        <label>Password</label>
-        <input type="password" value={password} placeholder="password" onChange={e => setPassword (e.target.value)} />
-      </div>
-      <div className="input-group">
-        <button onClick={runLogin}>Log In</button>
+      <div className="row cols-1 text-center">
+        <div>
+          <button onClick={runLogin}>Log In</button>
+        </div>
       </div>
     </main>
   )
   return (
-    <main className="">
+    <main>
       <div>
         Click to <a onClick={signOut}>logout.</a>
       </div>

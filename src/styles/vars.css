@@ -8,7 +8,8 @@
 }
 :root {
   --background-color: #d4c29a;
-  --font-color: #660b0b;
+  --font-color: hsl(0, 81%, 22%);
+  --link-color: hsl(220, 81%, 22%);
   --brown: #192841;
   --blue: #a4c1c9;
   --tan: #294068;

@@ -1,0 +1,14 @@
+.editable-text.editing span:hover {
+    text-decoration: underline dashed;
+}
+.editable-text-options {
+    display: none;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.editable-text.editing .editable-text-options {
+    display: grid;
+}
+.editable-pencil img {
+    width: 1rem;
+    cursor: pointer;
+}
