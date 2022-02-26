@@ -1,24 +1,29 @@
 {
   "files": {
-    "main.css": "/Clergymen/static/css/main.b9617457.chunk.css",
-    "main.js": "/Clergymen/static/js/main.4d7dffc2.chunk.js",
-    "main.js.map": "/Clergymen/static/js/main.4d7dffc2.chunk.js.map",
-    "runtime-main.js": "/Clergymen/static/js/runtime-main.35cb8323.js",
-    "runtime-main.js.map": "/Clergymen/static/js/runtime-main.35cb8323.js.map",
-    "static/js/2.a793c0b2.chunk.js": "/Clergymen/static/js/2.a793c0b2.chunk.js",
-    "static/js/2.a793c0b2.chunk.js.map": "/Clergymen/static/js/2.a793c0b2.chunk.js.map",
+    "main.css": "/Clergymen/static/css/main.1748c2b7.chunk.css",
+    "main.js": "/Clergymen/static/js/main.e4cf6170.chunk.js",
+    "main.js.map": "/Clergymen/static/js/main.e4cf6170.chunk.js.map",
+    "runtime-main.js": "/Clergymen/static/js/runtime-main.7bf9c954.js",
+    "runtime-main.js.map": "/Clergymen/static/js/runtime-main.7bf9c954.js.map",
+    "static/js/2.64123d27.chunk.js": "/Clergymen/static/js/2.64123d27.chunk.js",
+    "static/js/2.64123d27.chunk.js.map": "/Clergymen/static/js/2.64123d27.chunk.js.map",
     "index.html": "/Clergymen/index.html",
-    "static/css/main.b9617457.chunk.css.map": "/Clergymen/static/css/main.b9617457.chunk.css.map",
-    "static/js/2.a793c0b2.chunk.js.LICENSE.txt": "/Clergymen/static/js/2.a793c0b2.chunk.js.LICENSE.txt",
-    "static/media/nav.de37125c.svg": "/Clergymen/static/media/nav.de37125c.svg",
+    "static/css/main.1748c2b7.chunk.css.map": "/Clergymen/static/css/main.1748c2b7.chunk.css.map",
+    "static/js/2.64123d27.chunk.js.LICENSE.txt": "/Clergymen/static/js/2.64123d27.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/Clergymen/static/media/MoonTime-Regular.a420eaa4.otf",
+    "static/media/image.711b2f6d.png": "/Clergymen/static/media/image.711b2f6d.png",
+    "static/media/link.27b599f9.png": "/Clergymen/static/media/link.27b599f9.png",
+    "static/media/logo transparent.57425ba9.png": "/Clergymen/static/media/logo transparent.57425ba9.png",
+    "static/media/nomadic-julien-rV8ihhCauO0-unsplash.fc746311.jpg": "/Clergymen/static/media/nomadic-julien-rV8ihhCauO0-unsplash.fc746311.jpg",
+    "static/media/parchment.fec1ecef.jpg": "/Clergymen/static/media/parchment.fec1ecef.jpg",
     "static/media/pause.f4fa2300.svg": "/Clergymen/static/media/pause.f4fa2300.svg",
     "static/media/play.c0a9fbaf.svg": "/Clergymen/static/media/play.c0a9fbaf.svg",
-    "static/media/rotate.6f436ac3.svg": "/Clergymen/static/media/rotate.6f436ac3.svg"
+    "static/media/swap.181af1f4.png": "/Clergymen/static/media/swap.181af1f4.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.35cb8323.js",
-    "static/js/2.a793c0b2.chunk.js",
-    "static/css/main.b9617457.chunk.css",
-    "static/js/main.4d7dffc2.chunk.js"
+    "static/js/runtime-main.7bf9c954.js",
+    "static/js/2.64123d27.chunk.js",
+    "static/css/main.1748c2b7.chunk.css",
+    "static/js/main.e4cf6170.chunk.js"
   ]
 }
