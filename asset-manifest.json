@@ -1,18 +1,19 @@
 {
   "files": {
-    "main.css": "/Clergymen/static/css/main.2c73ba2b.chunk.css",
-    "main.js": "/Clergymen/static/js/main.ce56050b.chunk.js",
-    "main.js.map": "/Clergymen/static/js/main.ce56050b.chunk.js.map",
+    "main.css": "/Clergymen/static/css/main.35743956.chunk.css",
+    "main.js": "/Clergymen/static/js/main.6444a4ad.chunk.js",
+    "main.js.map": "/Clergymen/static/js/main.6444a4ad.chunk.js.map",
     "runtime-main.js": "/Clergymen/static/js/runtime-main.7bf9c954.js",
     "runtime-main.js.map": "/Clergymen/static/js/runtime-main.7bf9c954.js.map",
     "static/js/2.1ed6e7c2.chunk.js": "/Clergymen/static/js/2.1ed6e7c2.chunk.js",
     "static/js/2.1ed6e7c2.chunk.js.map": "/Clergymen/static/js/2.1ed6e7c2.chunk.js.map",
     "index.html": "/Clergymen/index.html",
-    "static/css/main.2c73ba2b.chunk.css.map": "/Clergymen/static/css/main.2c73ba2b.chunk.css.map",
+    "static/css/main.35743956.chunk.css.map": "/Clergymen/static/css/main.35743956.chunk.css.map",
     "static/js/2.1ed6e7c2.chunk.js.LICENSE.txt": "/Clergymen/static/js/2.1ed6e7c2.chunk.js.LICENSE.txt",
     "static/media/index.css": "/Clergymen/static/media/MoonTime-Regular.a420eaa4.otf",
     "static/media/episode.c4ef54c7.png": "/Clergymen/static/media/episode.c4ef54c7.png",
     "static/media/forward.54377a19.png": "/Clergymen/static/media/forward.54377a19.png",
+    "static/media/history.65e3b3d1.png": "/Clergymen/static/media/history.65e3b3d1.png",
     "static/media/image.711b2f6d.png": "/Clergymen/static/media/image.711b2f6d.png",
     "static/media/link.27b599f9.png": "/Clergymen/static/media/link.27b599f9.png",
     "static/media/logo transparent.57425ba9.png": "/Clergymen/static/media/logo transparent.57425ba9.png",
@@ -26,7 +27,7 @@
   "entrypoints": [
     "static/js/runtime-main.7bf9c954.js",
     "static/js/2.1ed6e7c2.chunk.js",
-    "static/css/main.2c73ba2b.chunk.css",
-    "static/js/main.ce56050b.chunk.js"
+    "static/css/main.35743956.chunk.css",
+    "static/js/main.6444a4ad.chunk.js"
   ]
 }
