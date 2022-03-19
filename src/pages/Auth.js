@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import {useApp} from '../AppProvider';
-import { H2 } from '../components/Headers';
 
 function Auth () {
   
-  const {router: {page}, auth: {isAuthenticated, isFirstLogin, login, completePasswordChallenge, signOut}} = useApp ();
+  const {router: {page, redirect}, auth: {isAuthenticated, isFirstLogin, login, completePasswordChallenge, signOut}} = useApp ();
 
   const [username, setUsername] = useState ('');
   const [password, setPassword] = useState ('');
   const [err, setErr] = useState (null);
-  const runLogin = async e => {
+  const runLogin = async () => {
     try {
       await login (username, password);
       setUsername ('');
       setPassword ('');
+      redirect ('manage-content') ();
     } catch (e) {
       setErr (e?.message);
     }
@@ -37,8 +37,10 @@ function Auth () {
       <h1>Log In</h1>
       {
         err &&
-        <div className="input-group">
-          <label>Error: {err.toString ()}</label>
+        <div className="row text-center">
+          <div className="col">
+            <label>Error: {err.toString ()}</label>
+          </div>
         </div>
       }
       <div className="row cols-2 text-center">
@@ -62,8 +64,11 @@ function Auth () {
   )
   return (
     <main>
-      <div>
-        Click to <a onClick={signOut}>logout.</a>
+      <h1>Welcome to The Clergymen admin site!</h1>
+      <div className="row text-center">
+        <div className="col">
+          <button onClick={signOut}>Click to logout.</button>
+        </div>
       </div>
     </main>
   )

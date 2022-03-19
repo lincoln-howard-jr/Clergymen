@@ -21,7 +21,7 @@ footer#audio-player {
   height: 4rem;
   width: 100vw;
   box-shadow: var(--shadow);
-  background-color: var(--black);
+  background-color: var(--font-color-transparent);
 }
 footer#audio-player > section.audio-player-container {
   display: grid;
@@ -32,7 +32,7 @@ footer#audio-player > section.audio-player-container {
   margin: 0.5rem 2rem 0 2rem; 
   padding: 0;
   height: 3.5rem;
-  color: var(--blue);
+  color: var(--white);
 }
 
 footer#audio-player > section.audio-player-container > section.audio-player-image {
@@ -57,7 +57,7 @@ footer#audio-player > section.audio-player-container > section.audio-player-imag
 footer#audio-player > section.audio-player-container > section.progress {
   transition: 0.7s;
   grid-column: 1 / 3;
-  border-top: 0.75rem solid var(--blue);
+  border-top: 0.75rem solid var(--white);
   height: 0rem;
 }
 .audio-player-container-small {

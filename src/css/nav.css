@@ -1,3 +1,15 @@
+@keyframes fade-left-in {
+  0% {
+    transform: translateX(-50vw);
+    opacity: 0;
+  }
+}
+@keyframes fade-left-in-basic {
+  0% {
+    transform: translateX(-15vw);
+    opacity: 0;
+  }
+}
 nav {
   margin: 0;
   width: 100vw;
@@ -8,6 +20,9 @@ nav {
   grid-template-columns: 1fr 1fr 128px 1fr 1fr;
   grid-template-areas: "link-1 link-2 logo link-3 link-4";
 }
+nav .nav-bars { 
+  display: none;
+}
 nav .nav-logo {
   grid-area: logo;
   cursor: pointer;
@@ -16,8 +31,73 @@ nav .nav-link {
   transition: 0.2s;
   padding: 1rem;
   cursor: pointer;
-  text-decoration: underline #ffffff00;
+  text-decoration: underline #f5e6e600;
 }
 nav .nav-link:hover {
   text-decoration: underline var(--font-color);
+}
+@media (max-width: 800px) {
+  nav {
+    z-index: 9;
+    animation: fade-left-in-basic 0.6s;
+    position: fixed;
+    left: 0.5rem;
+    top: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--font-color);
+    background-color: var(--font-color-translucent);
+    box-shadow: 0 0 0.25rem var(--font-color);
+    grid-template-columns: 1fr;
+    grid-template-areas: "logo";
+  }
+  nav .nav-link {
+    display: none;
+    color: white;
+  }
+  nav .nav-logo {
+    display: none;
+  }
+  nav .nav-bars {
+    display: block;
+    width: 1rem;
+    padding: 0;
+    margin: 0;
+    aspect-ratio: 1;
+    filter: invert(0.7) drop-shadow(0 0 1px #d4c29a55);
+  }
+  nav.mobile-open {
+    animation: fade-left-in 0.5s;
+    left: 0;
+    top: 0;
+    border-radius: 0 0.5rem 0.5rem 0;
+    width: 50vw;
+    height: 100vh;
+    padding-top: 3vh;
+    grid-template-rows: 25vw 3rem 3rem 3rem 3rem;
+    grid-template-areas: "logo"
+                         "link-1"
+                         "link-2"
+                         "link-3"
+                         "link-4";
+  }
+  nav.mobile-open .nav-bars {
+    display: none;
+  }
+  nav.mobile-open .nav-link {
+    display: block;
+  }
+  nav.mobile-open .nav-logo {
+    width: 25vw;
+    display: block;
+  }
+  nav.mobile-open .nav-logo img {
+    filter: invert(0.5);
+  }
+  main {
+    padding-top: 2rem;
+  }
 }

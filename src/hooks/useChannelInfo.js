@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
-import { headers } from "../lib/auth";
 
-export default function useUploads (freeze) {
+export default function useUploads (freeze, auth) {
 
   const [channelInfo, setChannelInfo] = useState (null);
   const [err, setErr] = useState (null);
@@ -23,7 +22,7 @@ export default function useUploads (freeze) {
     try {
       let req = await fetch ('https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/channel', {
         method: 'PUT',
-        headers: headers.post,
+        headers: auth.headers.post,
         body: JSON.stringify (body)
       });
       let channel = await req.json ();

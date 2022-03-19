@@ -1,6 +1,12 @@
+main {
+  width: 100vw !important;
+}
 main h1 {
   font-size: 4rem;
   text-align: center;
+}
+div.col {
+  overflow: hidden;
 }
 div.row {
   width: 100%;
@@ -9,13 +15,13 @@ div.row {
   margin-top: 1.5rem;
 }
 div.row.cols-2 {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
 }
 div.row.cols-3 {
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 33% 33% 33%;
 }
 div.row.cols-4 {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 25% 25% 25% 25%;
 }
 div.row > div {
   width: 100%;
@@ -24,4 +30,12 @@ div.row > div {
 }
 div.text-center {
   align-items: center;
+}
+@media (max-width: 800px) {
+  div.row.cols-2, div.row.cols-3 {
+    grid-template-columns: 1fr;
+  }
+  div.row.cols-4 {
+    grid-template-columns: 1fr 1fr;
+  }
 }

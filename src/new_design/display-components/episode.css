@@ -1,0 +1,40 @@
+.episode-card {
+    cursor: pointer;
+    transition: 0.2s;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 2rem 1fr;
+    grid-template-areas: "image title"
+                         "image description"
+                         "image link";
+    column-gap: 0.25rem;
+    margin: 1rem 0.5rem;
+    padding: 0.5rem;
+    background-color: #d4c29a55;
+    box-shadow: 0 0 0.5rem #ffffffaa;
+}
+.episode-card:hover {
+    background-color: #d4c29aa5;
+}
+.episode-card h2 {
+    grid-area: title;
+    font-size: 1.75rem;
+    line-height: 2rem;
+}
+.episode-card p {
+    grid-area: description;
+    font-size: 1.25rem;
+    line-height: 2rem;
+}
+.episode-card img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    grid-area: image;
+}
+@media (max-width: 500px) {
+    .episode-card p {
+        grid-area: description;
+        font-size: 1.15rem;
+        line-height: 1.25rem;
+    }
+}

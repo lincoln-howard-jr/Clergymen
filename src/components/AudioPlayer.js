@@ -4,7 +4,7 @@ import PlaySVG from '../img/play.svg'
 
 const ts = seconds => `${Math.floor (seconds / 60)}:${('00' + Math.floor (seconds % 60)).slice (-2)}`;
 
-export default function ({src, playing, title, togglePlay, photo}) {
+export default function AudioPlayer ({src, playing, title, togglePlay, photo}) {
   const [width, setWidth] = useState ('0%');
   const [currTime, setCurrTime] = useState (0);
   const [duration, setDuration] = useState (0);
@@ -23,7 +23,7 @@ export default function ({src, playing, title, togglePlay, photo}) {
     <footer id="audio-player" className={smallPlayerOpen ? 'open' : ''}>
       <section className="audio-player-container-small">
         <span onClick={() => setSmallPlayerOpen (!smallPlayerOpen)} className="audio-player-small-image">
-          <img src={photo} />
+          <img alt="" src={photo} />
         </span>
         <section className="audio-player-small-time">
           <span>
@@ -34,7 +34,7 @@ export default function ({src, playing, title, togglePlay, photo}) {
             }
           </span>
           <span onClick={togglePlay} className="small-toggle-play">
-            <img src={playing ? PauseSVG : PlaySVG} />
+            <img alt="" src={playing ? PauseSVG : PlaySVG} />
           </span>
         </section>
       </section>
@@ -48,8 +48,8 @@ export default function ({src, playing, title, togglePlay, photo}) {
         </section>
         <section className="audio-player-title">{title}</section>
         <section onClick={togglePlay} className="audio-player-image">
-          <img src={photo} />
-          <img src={playing ? PauseSVG : PlaySVG} />
+          <img alt="" src={photo} />
+          <img alt="" src={playing ? PauseSVG : PlaySVG} />
         </section>
         <section style={{width}} className="progress" />
       </section>

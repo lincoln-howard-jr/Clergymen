@@ -1,0 +1,15 @@
+.none-component {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-height: 4rem;
+    max-width: 8rem;
+    margin: auto;
+}
+.none-component:hover {
+    background-color: #aaaaaa66;
+}
+.none-component img {
+    max-width: 2rem;
+}

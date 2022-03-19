@@ -2,9 +2,9 @@ import { useState } from "react";
 import './editable-text.css';
 import ComponentSelector from "./ComponentSelector";
 import TextEditor from "./TextEditor";
-import Pencil from '../../img/pencil.png';
-import Swap from '../../img/swap.png';
-import Delete from '../../img/delete.png';
+import Pencil from '../../../img/pencil.png';
+import Swap from '../../../img/swap.png';
+import Delete from '../../../img/delete.png';
 
 export default function EditableText (props) {
     const [editing, setEditing] = useState (false);

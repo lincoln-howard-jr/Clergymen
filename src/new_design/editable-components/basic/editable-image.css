@@ -9,6 +9,9 @@
     aspect-ratio: 1;
     object-fit: cover;
 }
+.editable-image.sepia > img {
+    filter: sepia(0.7) brightness(0.7); 
+}
 .editable-image .toolbar span {
     display: inline-block;
     width: 2rem;

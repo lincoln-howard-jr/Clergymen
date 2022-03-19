@@ -9,6 +9,8 @@
 :root {
   --background-color: #d4c29a;
   --font-color: hsl(0, 81%, 22%);
+  --font-color-translucent: hsla(0, 81%, 22%, 0.97);
+  --font-color-transparent: hsla(0, 81%, 22%, 0.82);
   --link-color: hsl(220, 81%, 22%);
   --brown: #192841;
   --blue: #a4c1c9;
@@ -38,7 +40,7 @@
   /* --font-size: clamp(14px, 1vw, 18px); */
   --font-size: 1.25rem;
 
-  --shadow: 0 0 .625rem var(--blue);
+  --shadow: 0 0 .625rem var(--black);
   --button-shadow: 0.125rem 0.125rem .25rem var(--blue);
   --button-hover-shadow: 0.2rem 0.2rem .325rem var(--blue);
 

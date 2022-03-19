@@ -1,6 +1,6 @@
 import { useApp } from "../../AppProvider"
 
-export default function (props) {
+export default function Text (props) {
     const app = useApp ();
     return (
         <p className={`align-${props.col?.params?.textAlign || 'left'}`}>
@@ -9,13 +9,13 @@ export default function (props) {
                     <>
                         {
                             !!t.link &&
-                            <span className="link" onClick={app.router.redirect (t.link)}>
+                            <span key={`text-${t.text}-link=${t.link}`} className="link" onClick={app.router.redirect (t.link)}>
                                 {t.text}
                             </span>
                         }
                         {
                             !t.link &&
-                            <span>{t.text}</span>
+                            <span key={`text-${t.text}`}>{t.text}</span>
                         }
                     </>
                 ))

@@ -1,8 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function useUploads (auth, freeze) {
 
+  const [uploads, setUploads] = useState ([]);
   const [err, setErr] = useState (null);
+
+  const getUploads = async () => {
+    try {
+      const req = await fetch ('https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/uploads', {
+        headers: auth.headers.get
+      });
+      const body = await req.json ();
+      setUploads (body)
+    } catch (e) {
+      console.log (e);
+    }
+  }
 
   const createUpload = body => new Promise (async (resolve, reject) => {
     try {
@@ -19,7 +32,7 @@ export default function useUploads (auth, freeze) {
     }
   });
 
-  const uploadFile = file => new Promise (async (resolve,reject) => {
+  const uploadFile = (file, resolveValue='url', squareify=false) => new Promise (async (resolve,reject) => {
     let unfreeze = freeze ('Uploading File...');
     try {
       const req = await fetch ('https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/uploads', {
@@ -27,7 +40,8 @@ export default function useUploads (auth, freeze) {
         headers: auth.headers.post,
         body: JSON.stringify ({
           filename: file.name,
-          contentType: file.type
+          contentType: file.type,
+          squareify
         })
       })
       const obj = await req.json ();
@@ -36,6 +50,8 @@ export default function useUploads (auth, freeze) {
         headers: new Headers ({'Content-Type': file.type}),
         body: file
       })
+      if (resolveValue === 'object') return resolve (obj);
+      getUploads ();
       resolve (`https://d1q33inlkclwle.cloudfront.net/${obj.url}`);
     } catch (e) {
       console.log (e);
@@ -45,5 +61,22 @@ export default function useUploads (auth, freeze) {
     }
   })
 
-  return {err, uploadFile, createUpload}
+  const deleteUpload = async id => {
+    let unfreeze = freeze ('removing upload');
+    try {
+      await fetch (`https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/uploads/${id}`, {
+        method: 'delete',
+        headers: auth.headers.get
+      })
+      await getUploads ();
+    } finally {
+      unfreeze ();
+    }
+  }
+
+  useEffect (() => {
+    if (auth.headers.get ['x-amz-id-token'] && auth.isAuthenticated) getUploads ();
+  }, [auth.isAuthenticated, auth.headers.get ['x-amz-id-token']])
+
+  return {err, uploads, uploadFile, createUpload, deleteUpload}
 }

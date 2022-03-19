@@ -1,0 +1,28 @@
+.editable-episode-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 2rem 1fr;
+    grid-template-areas: "image title"
+                         "image description"
+                         "image link";
+    column-gap: 0.5rem;
+    margin: 1rem 0.5rem;
+    padding: 0.5rem;
+    background-color: #d4c29a55;
+    box-shadow: 0 0 0.5rem #ffffffaa;
+}
+.editable-episode-card h2 {
+    grid-area: title;
+    font-size: 1.75rem;
+}
+.editable-episode-card p {
+    font-size: 1.15rem;
+    line-height: 1.25rem;
+    padding: 0;
+    grid-area: description;
+}
+.editable-episode-card img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    grid-area: image;
+}

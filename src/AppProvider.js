@@ -1,7 +1,6 @@
 // create a context usable across the whole application
 import React, { createContext, useState } from "react";
 import AudioPlayer from "./components/AudioPlayer";
-import {H1} from './components/Headers';
 import {useAuth, useCharacters, useForm, useRouter, useEpisodes, useChannelInfo, useContact} from './hooks';
 import usePages from "./hooks/usePages";
 import useUploads from "./hooks/useUploads";
@@ -17,7 +16,7 @@ export default function AppProvider ({children}) {
   const [podcastSrc, setPodcastSrc] = useState (null);
   const [podcastTitle, setPodcastTitle] = useState (null);
   const [podcastCoverPhoto, setPodcastCoverPhoto] = useState (null);
-  const [podcastUpNext, setPodcastUpNext] = useState ([]);
+  // const [podcastUpNext, setPodcastUpNext] = useState ([]);
   const [podcastPlaying, setPodcastPlaying] = useState (true);
 
   const togglePlay = () => setPodcastPlaying (!podcastPlaying);
@@ -40,7 +39,6 @@ export default function AppProvider ({children}) {
   // hooks
   const characters = useCharacters (freeze);
   const router = useRouter (freeze);
-  const channel = useChannelInfo (freeze);
   const contact = useContact (freeze);
   // called when the user is authenticated
   function onSessionActive () {
@@ -48,6 +46,7 @@ export default function AppProvider ({children}) {
   };
   // auth hook
   const auth = useAuth (onSessionActive, freeze);
+  const channel = useChannelInfo (freeze, auth);
   const uploads = useUploads (auth, freeze);
   const episodes = useEpisodes (freeze, auth);
   const pages = usePages (router, auth, freeze);
@@ -68,7 +67,7 @@ export default function AppProvider ({children}) {
         top: 0
       }}>
         <span style={{backgroundColor: 'white', padding: 50, border: '1px solid black'}}>
-          {frozen === true ? '' : <H1>{frozen}</H1>}
+          {frozen === true ? '' : <h1>{frozen}</h1>}
         </span>
       </div>
       {children}

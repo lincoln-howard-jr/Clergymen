@@ -1,11 +1,10 @@
-import LeftAlign from '../../img/left-align.png';
-import CenterAlign from '../../img/center-align.png';
-import RightAlign from '../../img/right-align.png';
-import Link from '../../img/link.png';
-import Text from '../../img/text.png';
-import './text-editor.css';
+import LeftAlign from '../../../img/left-align.png';
+import CenterAlign from '../../../img/center-align.png';
+import RightAlign from '../../../img/right-align.png';
+import Link from '../../../img/link.png';
+import Text from '../../../img/text.png';
 import { useState } from 'react';
-import {useApp} from '../../AppProvider';
+import {useApp} from '../../../AppProvider';
 
 export default function TextEditor (props) {
     const app = useApp ();
@@ -24,7 +23,7 @@ export default function TextEditor (props) {
             ...props.col.value,
             {
                 text,
-                link: 'home'
+                link: '...'
             }
         ]
         props.onChange ({...props.col, value});
@@ -49,28 +48,42 @@ export default function TextEditor (props) {
         value.splice (index, 0, el);
         props.onChange ({...props.col, value});
     }
+    const updateLink = index => {
+        console.log ('update link', index);
+        return e => {
+            console.log ('update link event', e, e.target.value);
+            const value = [...props.col.value];
+            const el = {
+                text: value [index].text,
+                link: e.target.value
+            }
+            console.log (el);
+            value.splice (index, 1, el);
+            props.onChange ({...props.col, value});
+        }
+    }
     const setCurrentText = idx => () => {
         setIndex (idx);
     }
     if (!props.open) return null;
     return (
-        <div onClick={e => {if (e.target.className === 'text-editor-backdrop') props.close ()}} className="text-editor-backdrop">
-            <div className="text-editor-container">
-                <div className="text-editor-toolbar">
-                    <span onClick={updateAlignment ('left')} className={`text-editor-toolbar-item ${props.col.params.textAlign === 'left' && 'active'}`}>
+        <div onClick={e => {if (e.target.className === 'editor-backdrop') props.close ()}} className="editor-backdrop">
+            <div className="editor-container">
+                <div className="editor-toolbar">
+                    <span onClick={updateAlignment ('left')} className={`editor-toolbar-item ${props.col.params.textAlign === 'left' && 'active'}`}>
                         <img src={LeftAlign} />
                     </span>
-                    <span onClick={updateAlignment ('center')} className={`text-editor-toolbar-item ${props.col.params.textAlign === 'center' && 'active'}`}>
+                    <span onClick={updateAlignment ('center')} className={`editor-toolbar-item ${props.col.params.textAlign === 'center' && 'active'}`}>
                         <img src={CenterAlign} />
                     </span>
-                    <span onClick={updateAlignment ('right')} className={`text-editor-toolbar-item ${props.col.params.textAlign === 'right' && 'active'}`}>
+                    <span onClick={updateAlignment ('right')} className={`editor-toolbar-item ${props.col.params.textAlign === 'right' && 'active'}`}>
                         <img src={RightAlign} />
                     </span>
                     <span className="vertical-divider" /> 
-                    <span onClick={() => appendText ('text')} className={`text-editor-toolbar-item ${props.col.params.textAlign === 'right' && 'active'}`}>
+                    <span onClick={() => appendText ('text')} className={`editor-toolbar-item ${props.col.params.textAlign === 'right' && 'active'}`}>
                         <img src={Text} />
                     </span>
-                    <span onClick={() => appendLink ('link')} className={`text-editor-toolbar-item ${props.col.params.textAlign === 'right' && 'active'}`}>
+                    <span onClick={() => appendLink ('link')} className={`editor-toolbar-item ${props.col.params.textAlign === 'right' && 'active'}`}>
                         <img src={Link} />
                     </span>
                     <div>
@@ -84,17 +97,22 @@ export default function TextEditor (props) {
                         }
                         {
                             currIndex !== -1 && currIndex < props.col.value.length && !!props.col.value [currIndex].link &&
-                            <select>
+                            <select onChange={updateLink (currIndex)}>
+                                {
+                                    app.pages.pages.filter (p => p.page !== app.pages.currentPage.page).map (page => (
+                                        <option selected={page.page === props.col.value [currIndex].link} value={page.page}>{page.title} ({page.page})</option>
+                                    ))
+                                }
                             </select>
                         }
                     </div>
                 </div>
                 <div onClick={e => {
-                    if (e.className === 'text-editor-content') appendText ();
-                }} className="text-editor-content">
+                    if (e.className === 'editor-content') appendText ();
+                }} className="editor-content">
                     {
                         props.col.value.map ((t, i) => (
-                            <span onFocus={setCurrentText (i)} onBlur={updateText (i)} contentEditable className={`text-editor-content-item ${t.link ? 'link' : ''}`} data-link={t?.link}>
+                            <span onFocus={setCurrentText (i)} onBlur={updateText (i)} contentEditable className={`editor-content-item ${t.link ? 'link' : ''}`} data-link={t?.link}>
                                 {t.text}
                             </span>
                         ))

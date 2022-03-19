@@ -3,12 +3,14 @@ import { useEffect, useState } from "react"
 export default function useRouter () {
   
   const initalPage = new URLSearchParams (window.location.search).get ('page');
-  const [page, setPage] = useState (initalPage);
+  const [page, setPage] = useState (initalPage || 'home');
+  const [param, setParam] = useState (null)
   
-  const redirect = (page, data={}) => () => {
+  const redirect = (page, param=null, paramName='id', data={}) => () => {
     setPage (page);
-    window.history.pushState (data, page, `/Clergymen?page=${page}`);
+    setParam (param);
+    window.history.pushState (data, page, `/?page=${page}${param ? `&${paramName}=${param}` : ''}`);
   }
 
-  return {page, redirect}
+  return {page, param, redirect}
 }

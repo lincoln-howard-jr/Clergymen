@@ -57,7 +57,6 @@ export default function useAuth (onSessionActive, freeze) {
       setUser (_user);
       _user.authenticateUser (details, {
         onSuccess: async () => {
-          init ()
         },
         onFailure: error => {
           reject (error);
@@ -73,7 +72,7 @@ export default function useAuth (onSessionActive, freeze) {
   });
 
   const completePasswordChallenge = password => {
-    user.completeNewPasswordChallenge (password, userAttributes, {
+    user?.completeNewPasswordChallenge (password, userAttributes, {
       onSuccess: () => {
         init ();
       }
@@ -98,7 +97,7 @@ export default function useAuth (onSessionActive, freeze) {
 
   useEffect (() => {
     init ();
-  }, []);
+  }, [user]);
 
   useEffect (() => {
     if (isAuthenticated) onSessionActive ();

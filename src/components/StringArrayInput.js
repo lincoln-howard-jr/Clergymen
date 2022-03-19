@@ -23,14 +23,20 @@ export default function StringArrayInput ({onChange, defaultValue=[]}) {
     <>
       {
         array.map ((text, index) => (
-          <section>
-            <div contentEditable onBlur={set (index)} >{text}</div>
-            <button onClick={removeSection (index)}>Remove Section</button>
+          <section className="row text-center" key={`text-editor-${index}-${text}`}>
+            <div className="col">
+              <div contentEditable="plaintext-only" onBlur={set (index)} >{text}</div>
+            </div>
+            <div className="col">
+              <button onClick={removeSection (index)}>Remove Section</button>  
+            </div>
           </section>
         ))
       }
-      <section>
-        <button onClick={addSection}>Add Section</button>
+      <section className="row text-center">
+        <div className="col">
+          <button onClick={addSection}>Add Section</button>
+        </div>
       </section>
     </>
   )

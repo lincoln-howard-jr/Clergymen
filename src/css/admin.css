@@ -1,0 +1,11 @@
+/* image selector */
+.image-selector .toolbar {
+    margin: auto;
+    width: 3rem;
+    cursor: pointer;
+}
+.image-selector .toolbar img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+}
