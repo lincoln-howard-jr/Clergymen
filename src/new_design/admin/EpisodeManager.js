@@ -16,14 +16,14 @@ export default function EpisodeManager () {
     const app = useApp ();
     if (!app.auth.isAuthenticated || app.router.page !== 'manage-episodes') return null;
     return (
-        <main className="episode-manager">
+        <main className="content-manager">
             <h1>Manage Episodes</h1>
             <div className="row text-center">
                 <div className="col">
                     <span onClick={app.router.redirect ('manage-content')} className="link">back to all content</span>
                 </div>
             </div>
-            <div className="new-episode" onClick={app.router.redirect ('create-episode')}>
+            <div className="create" onClick={app.router.redirect ('create-episode')}>
                 <img src={Plus} />
             </div>
             {

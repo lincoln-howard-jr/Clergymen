@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useApp } from "../../AppProvider";
 import Upload from '../../img/upload.png'
+import AudioSelector from "./AudioSelector";
+import ImageSelector from "./ImageSelector";
 
 const months = [
     'Jan',
@@ -21,7 +23,9 @@ export default function EditEpisode () {
     const app = useApp ();
 
     const [episode, setEpisode] = useState (undefined);
-    
+    const [selectImage, setSelectImage] = useState (false);
+    const [selectAudio, setSelectAudio] = useState (false);
+
     const [title, setTitle] = useState ('');
     const [shortDescription, setShortDescription] = useState ('');
     const [longDescription, setLongDescription] = useState ('');
@@ -30,22 +34,8 @@ export default function EditEpisode () {
     const [releaseDateDate, setReleaseDateDate] = useState (new Date ().getDate ());
     const [releaseDateMonth, setReleaseDateMonth] = useState (new Date ().getMonth ());
     const [releaseDateYear, setReleaseDateYear] = useState (new Date ().getFullYear ());
-    const [coverPhotoId, setCoverPhotoId] = useState (null);
-    const [coverPhotoUrl, setCoverPhotoUrl] = useState (null);
-    const [audioSourceId, setAudioSourceId] = useState (null);
-    const [audioSourceUrl, setAudioSourceUrl] = useState (null);
-
-    const uploadPhoto = async e => {
-        const obj = await app.uploads.uploadFile (e.target.files [0], 'object', true)
-        setCoverPhotoId (obj.id);
-        setCoverPhotoUrl (obj.url);
-    }
-
-    const uploadAudio = async e => {
-        const obj = await app.uploads.uploadFile (e.target.files [0], 'object')
-        setAudioSourceId (obj.id);
-        setAudioSourceUrl (obj.url);
-    }
+    const [coverPhoto, setCoverPhoto] = useState (null);
+    const [audioSource, setAudioSource] = useState (null);
 
     const reset = () => {
         setTitle (episode?.title || '');
@@ -56,10 +46,8 @@ export default function EditEpisode () {
         setReleaseDateDate (episode?.releaseDate?.getDate () || new Date ().getDate ());
         setReleaseDateMonth (episode?.releaseDate?.getMonth () || new Date ().getMonth ());
         setReleaseDateYear (episode?.releaseDate?.getFullYear () || new Date ().getFullYear ());
-        setCoverPhotoId (episode?.coverPhoto?.id);
-        setCoverPhotoUrl (episode?.coverPhoto?.url);
-        setAudioSourceId (episode?.audioSource?.id);
-        setAudioSourceUrl (episode?.audioSource?.url)
+        setCoverPhoto (episode?.coverPhoto);
+        setAudioSource (episode?.audioSource)
     }
 
     const validate = () => new Promise ((resolve, reject) => {
@@ -71,20 +59,19 @@ export default function EditEpisode () {
         resolve ();
     })
 
-    const createEpisode = async () => {
+    const updateEpisode = async () => {
         try {
             await validate ();
-            await app.episodes.createEpisode ({
+            await app.episodes.updateEpisode (episode.id, {
                 title,
                 shortDescription,
                 longDescription,
                 episodeNumber,
                 seasonNumber,
                 releaseDate: new Date (releaseDateYear, releaseDateMonth, releaseDateDate),
-                coverPhoto: coverPhotoId,
-                audioSource: audioSourceId
+                coverPhoto: coverPhoto.id,
+                audioSource: audioSource.id
             });
-            await app.episodes.deleteEpisode (episode.id);
             reset ();
         } catch (e) {
             alert (`${e}`);
@@ -108,94 +95,91 @@ export default function EditEpisode () {
 
     if (!app.auth.isAuthenticated || episode === undefined ) return null;
     return (
-        <main>
-            <h1>Edit Episode</h1>
-            <div className="row text-center">
-                <div className="col">
-                    <span onClick={app.router.redirect ('manage-episodes')} className="link">back to all episodes</span>
+        <>
+            <ImageSelector open={selectImage} close={() => setSelectImage (false)} select={setCoverPhoto} />
+            <AudioSelector open={selectAudio} close={() => setSelectAudio (false)} select={setAudioSource} />
+            <main>
+                <h1>Edit Episode</h1>
+                <div className="row text-center">
+                    <div className="col">
+                        <span onClick={app.router.redirect ('manage-episodes')} className="link">back to all episodes</span>
+                    </div>
                 </div>
-            </div>
-            <div className="text-center">
-                <h2>{episode.title}</h2>
-            </div>
-            <div className="row text-center">
-                <div className="col">
-                    <span onClick={app.router.redirect ('manage-episodes')} className="link">back to all epsiodes</span>
+                <div className="text-center">
+                    <h2>{episode.title}</h2>
                 </div>
-            </div>
-            <div className="form-group">
-                <label>Title</label>
-                <input value={title} onChange={e => setTitle (e.target.value)} />
-            </div>
-            <div className="form-group">
-                <label>Season Number</label>
-                <input type="number" value={seasonNumber} onChange={e => setSeasonNumber (parseInt (e.target.value))} />
-            </div>
-            <div className="form-group">
-                <label>Episode Number</label>
-                <input type="number" value={episodeNumber} onChange={e => setEpisodeNumber (parseInt (e.target.value))} />
-            </div>
-            <div className="form-group">
-                <label>Short Description</label>
-                <span contentEditable="plaintext-only" onBlur={e => setShortDescription (e.target.innerText)}>{shortDescription}</span>
-            </div>
-            <div className="form-group">
-                <label>Long Description</label>
-                <span contentEditable="plaintext-only" onBlur={e => setLongDescription (e.target.innerText)}>{longDescription}</span>
-            </div>
-            <div className="form-group">
-                <label>Release Date</label>
-                <div className="date-input">
-                    <select value={releaseDateMonth} onChange={e => setReleaseDateMonth (e.target.value)}>
+                <div className="form-group">
+                    <label>Title</label>
+                    <input value={title} onChange={e => setTitle (e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label>Season Number</label>
+                    <input type="number" value={seasonNumber} onChange={e => setSeasonNumber (parseInt (e.target.value))} />
+                </div>
+                <div className="form-group">
+                    <label>Episode Number</label>
+                    <input type="number" value={episodeNumber} onChange={e => setEpisodeNumber (parseInt (e.target.value))} />
+                </div>
+                <div className="form-group">
+                    <label>Short Description</label>
+                    <span contentEditable="plaintext-only" onBlur={e => setShortDescription (e.target.innerText)}>{shortDescription}</span>
+                </div>
+                <div className="form-group">
+                    <label>Long Description</label>
+                    <span contentEditable="plaintext-only" onBlur={e => setLongDescription (e.target.innerText)}>{longDescription}</span>
+                </div>
+                <div className="form-group">
+                    <label>Release Date</label>
+                    <div className="date-input">
+                        <select value={releaseDateMonth} onChange={e => setReleaseDateMonth (e.target.value)}>
+                            {
+                                months.map ((month, i) => (
+                                    <option value={i}>{month}</option>
+                                ))
+                            }
+                        </select>
+                        /
+                        <input type="number" value={releaseDateDate} onChange={e => setReleaseDateDate (parseInt (e.target.value))} />
+                        /
+                        <input type="number" value={releaseDateYear} onChange={e => setReleaseDateYear (parseInt (e.target.value))} />
+                    </div>
+                </div>
+                <div className="form-group">
+                    <label>Cover Photo</label>
+                    <div className="file-input">
                         {
-                            months.map ((month, i) => (
-                                <option value={i}>{month}</option>
-                            ))
+                            !!coverPhoto &&
+                            <img className="file" src={`https://resources.theclergymen.com/${coverPhoto.url}`} />
                         }
-                    </select>
-                    /
-                    <input type="number" value={releaseDateDate} onChange={e => setReleaseDateDate (parseInt (e.target.value))} />
-                    /
-                    <input type="number" value={releaseDateYear} onChange={e => setReleaseDateYear (parseInt (e.target.value))} />
+                        <label onClick={() => setSelectImage (true)}>
+                            <img src={Upload} />
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <div className="form-group">
-                <label>Cover Photo</label>
-                <div className="file-input">
-                    {
-                        !!coverPhotoUrl &&
-                        <img className="file" src={`https://d1q33inlkclwle.cloudfront.net/${coverPhotoUrl}`} />
-                    }
-                    <label>
-                        <img src={Upload} />
-                        <input onChange={uploadPhoto} hidden type="file" accept="image/png, image/jpeg, image/jpg" />
-                    </label>
+                <div className="form-group">
+                    <label>Audio</label>
+                    <div className="file-input">
+                        {
+                            !!audioSource &&
+                            <audio className="file" controls src={`https://resources.theclergymen.com/${audioSource.url}`} />
+                        }
+                        <label onClick={() => setSelectAudio (true)}>
+                            <img src={Upload} />
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <div className="form-group">
-                <label>Audio</label>
-                <div className="file-input">
-                    {
-                        !!audioSourceUrl &&
-                        <audio className="file" controls src={`https://d1q33inlkclwle.cloudfront.net/${audioSourceUrl}`} />
-                    }
-                    <label>
-                        <img src={Upload} />
-                        <input onChange={uploadAudio} hidden type="file" accept="audio/mp3" />
-                    </label>
+                <div className="row text-center">
+                    <div className="col">
+                        <button onClick={updateEpisode}>Submit</button>
+                    </div>
                 </div>
-            </div>
-            <div className="row text-center">
-                <div className="col">
-                    <button onClick={createEpisode}>Submit</button>
+                <div className="row text-center">
+                    <div className="col">
+                        <hr />
+                        <button onClick={() => app.episodes.deleteEpisode (episode.id)}>Delete {episode.title}</button>
+                    </div>
                 </div>
-            </div>
-            <div className="row text-center">
-                <div className="col">
-                    <hr />
-                    <button onClick={() => app.episodes.deleteEpisode (episode.id)}>Delete {episode.title}</button>
-                </div>
-            </div>
-        </main>
+            </main>
+        </>
     )
 }

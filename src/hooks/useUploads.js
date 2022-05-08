@@ -52,7 +52,7 @@ export default function useUploads (auth, freeze) {
       })
       if (resolveValue === 'object') return resolve (obj);
       getUploads ();
-      resolve (`https://d1q33inlkclwle.cloudfront.net/${obj.url}`);
+      resolve (`${obj.url}`);
     } catch (e) {
       console.log (e);
       reject (e);

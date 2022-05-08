@@ -24,7 +24,8 @@ export default function PageEditor () {
 
   const onChange = rowIndex => updatedValue => {
     const clone = [...rows];
-    clone.splice (rowIndex, 1, updatedValue);
+    if (updatedValue) clone.splice (rowIndex, 1, updatedValue);
+    else clone.splice (rowIndex, 1);
     setRows (clone);
   }
 
@@ -34,7 +35,7 @@ export default function PageEditor () {
     let [r] = clone.splice (dragging, 1);
     clone.splice (index, 0, r);
     setRows (clone);
-    setDragging (false);
+    setDragging (-1);
   }
   const deleteAt = () => {
     let clone = [...rows];
@@ -162,7 +163,7 @@ export default function PageEditor () {
         }
         <div className="row text-center">
           <div className="col">
-            <span className="eyes" onClick={() => setRows ([...rows, {cols: 1, contents: [col]}])}><img src={RowIcon} /></span>
+            <span className="eyes" onClick={() => setRows ([...rows, {cols: 0, contents: []}])}><img src={RowIcon} /></span>
           </div>
         </div>
         <div onDragOver={e => e.preventDefault ()} onDrop={deleteAt}  className="dropable trash">

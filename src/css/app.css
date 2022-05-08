@@ -53,69 +53,6 @@
   width: 100%;
   align-items: center;
   justify-items: center;
-} 
-/* admin episode manager */
-.episode-manager .new-episode {
-  cursor: pointer;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  height: 6rem;
-  width: 12rem;
-  margin: 1rem auto;
-}
-.episode-manager .new-episode:hover {
-  background-color: #cccccc66;
-}
-.episode-manager .new-episode img {
-  width: 4rem;
-}
-.episode-manager .episode {
-  width: 60ch;
-  padding: 1ch;
-  border: 1px solid var(--font-color);
-  background-color: #d4c29a55;
-  max-width: 94%;
-  margin: 4rem auto;
-  display: grid;
-  grid-template-columns: 10rem 1fr 1fr;
-  grid-template-rows: 2rem 10rem 2rem ;
-  grid-template-areas:  "title title number"
-                        "image description description"
-                        "release actions actions";
-  gap: 0.5rem;
-}
-.episode-manager .episode .title {
-  grid-area: title;
-}
-.episode-manager .episode .episode-number {
-  grid-area: number;
-}
-.episode-manager .episode .image {
-  grid-area: image;
-  width: 10rem;
-  aspect-ratio: 1;
-}
-.episode-manager .episode .description {
-  grid-area: description;
-}
-.episode-manager .episode .release {
-  grid-area: release;
-}
-.episode-manager .episode .actions {
-  text-align: right;
-  grid-area: actions;
-}
-.episode-manager .episode .actions span {
-  cursor: pointer;
-  width: 2rem;
-  height: 2rem;
-  padding: 0.25rem;
-  margin: 0 0.5rem;
-}
-.episode-manager .episode .actions img {
-  width: 1.5rem;
-  aspect-ratio: 1;
 }
 /* forms */
 .form-group {
@@ -197,4 +134,19 @@
 }
 .media-manager .image-toolbar img {
   width: var(--font-size);
+}
+button {
+  cursor: pointer;
+  transition: 0.1s;
+  border: 1px solid var(--font-color-translucent);
+  background-color: hsla(30, 40%, 72%, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin: 0.5rem auto !important;
+  min-width: 10ch;
+}
+@media (hover: hover) {
+  button:hover {
+    background-color: hsla(30, 40%, 72%, 0.7);
+  }
 }

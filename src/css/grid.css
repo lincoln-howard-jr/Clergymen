@@ -1,18 +1,20 @@
 main {
   width: 100vw !important;
+  margin-bottom: 1.5rem;
+}
+footer {
+  margin-bottom: 4rem;
 }
 main h1 {
   font-size: 4rem;
   text-align: center;
-}
-div.col {
-  overflow: hidden;
 }
 div.row {
   width: 100%;
   display: grid;
   align-items: center;
   margin-top: 1.5rem;
+  padding: 0;
 }
 div.row.cols-2 {
   grid-template-columns: 50% 50%;
@@ -25,8 +27,11 @@ div.row.cols-4 {
 }
 div.row > div {
   width: 100%;
-  max-width: 55ch;
   margin: auto;
+  padding: 0;
+}
+div.row:not(.breakout) > div {
+  max-width: 55ch;
 }
 div.text-center {
   align-items: center;

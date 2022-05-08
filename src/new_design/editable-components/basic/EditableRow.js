@@ -7,7 +7,7 @@ import RowEditor from "./RowEditor";
 import { useState } from "react";
 
 export default function EditableRow (props) {
-  const [editing, setEditing] = useState (false);
+  const [editing, setEditing] = useState (!props.row.cols);
   const onChange = columnIndex => updatedValue => {
     const contents = [...props.row.contents];
     contents.splice (columnIndex, 1, updatedValue);
@@ -26,7 +26,7 @@ export default function EditableRow (props) {
     return (
       <>
         <RowEditor open={editing} close={() => setEditing (false)} onChange={props.onChange} row={props.row} />
-        <div draggable onDragStart={drag} onDragEnd={stop} className={`editable row cols-${props.row.cols}`} >
+        <div draggable onDragStart={drag} onDragEnd={stop} className={`editable row cols-${props.row.cols}${props.row.breakout ? ' breakout' : ''}`} >
           {
             props.row.contents.map ((col, i) => (
               <div className={`col ${col.type}`}>

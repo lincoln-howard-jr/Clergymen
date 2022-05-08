@@ -23,12 +23,17 @@ function Auth () {
   if (isFirstLogin) return (
     <main>
       <h1>Create New Password</h1>
-      <div className="input-group">
-        <label>Password</label>
-        <input type="password" value={password} placeholder="password" onChange={e => setPassword (e.target.value)} />
+      <div className='row text-center'>
+        <div className='col'>
+          <label>
+            Password <input type="password" value={password} placeholder="password" onChange={e => setPassword (e.target.value)} />
+          </label>
+        </div>
       </div>
-      <div className="input-group">
-        <button onClick={() => completePasswordChallenge (password)}>Set New Password</button>
+      <div className='row text-center'>
+        <div className='col'>
+          <button onClick={() => completePasswordChallenge (password)}>Set New Password</button>
+        </div>
       </div>
     </main>
   )

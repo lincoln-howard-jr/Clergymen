@@ -12,6 +12,10 @@ import EditChannelInfo from './new_design/admin/EditChannelInfo';
 import PageHistory from './new_design/PageHistory';
 import ManageMedia from './new_design/admin/ManageMedia';
 import { useApp } from './AppProvider';
+import Footer from './new_design/Footer';
+import CreateCharacter from './new_design/admin/CreateCharacter';
+import ManageCharacters from './new_design/admin/ManageCharacters';
+import EditCharacter from './new_design/admin/EditCharacter';
 
 function App() {
   const app = useApp ();
@@ -32,11 +36,15 @@ function App() {
           <EpisodeManager />
           <CreateEpisode />
           <EditEpisode />
+          <ManageCharacters />
+          <CreateCharacter />
+          <EditCharacter />
           <EditChannelInfo />
           <ManageMedia />
         </> 
       }
       <Auth />
+      <Footer />
     </>
   );
 }

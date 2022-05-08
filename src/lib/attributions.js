@@ -18,5 +18,6 @@ export default {
   'history.png': '<a href="https://www.flaticon.com/free-icons/history" title="history icons">History icons created by joalfa - Flaticon</a>',
   'heading.png': '<a href="https://www.flaticon.com/free-icons/heading" title="heading icons">Heading icons created by Royyan Wijaya - Flaticon</a>',
   'eye.png': '<a href="https://www.flaticon.com/free-icons/eye" title="eye icons">Eye icons created by Kiranshastry - Flaticon</a>',
-  'eye-slash.png': '<a href="https://www.flaticon.com/free-icons/eye" title="eye icons">Eye icons created by mattbadal - Flaticon</a>'
+  'eye-slash.png': '<a href="https://www.flaticon.com/free-icons/eye" title="eye icons">Eye icons created by mattbadal - Flaticon</a>',
+  'resize.png': '<a href="https://www.flaticon.com/free-icons/expand" title="expand icons">Expand icons created by Smartline - Flaticon</a>'
 }

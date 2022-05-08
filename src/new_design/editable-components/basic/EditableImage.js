@@ -23,12 +23,20 @@ export default function EditableImage (props) {
         console.log (e);
     }
   }
+  const getStyle = () => {
+    const style = {}
+    if (props.col?.params?.width && props.col?.params?.height) style.aspectRatio = 'unset';
+    if (props.col?.params?.width) style.width = props.col.params.width.value + props.col.params.width.unit;
+    if (props.col?.params?.height) style.height = props.col.params.height.value + props.col.params.height.unit;
+    if (props.col?.params?.fit) style.objectFit = props.col.params.fit;
+    return {style}
+}
   return (
     <>
         <ComponentSelector open={selecting} close={() => setSelecting (false)} onSelect={props.onChange} />
         <ImageEditor open={editing} close={() => setEditing (false)} onChange={props.onChange} col={props.col} />
         <figure className={`editable-image ${props.col.params.sepia && 'sepia'}`}>
-            <img onClick={() => fileRef.current.click ()} src={props.col.value || Image} />
+            <img {...getStyle ()} onClick={() => fileRef.current.click ()} src={props.col.value ? `https://resources.theclergymen.com/${props.col.value}` : Image} />
             <div className="toolbar">
                 <span onClick={() => setEditing (true)} className="editable-pencil">
                     <img src={Pencil} />

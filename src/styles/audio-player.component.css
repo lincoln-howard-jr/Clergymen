@@ -14,7 +14,7 @@
     opacity: 1;
   }
 }
-footer#audio-player {
+div#audio-player {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -23,7 +23,7 @@ footer#audio-player {
   box-shadow: var(--shadow);
   background-color: var(--font-color-transparent);
 }
-footer#audio-player > section.audio-player-container {
+div#audio-player > section.audio-player-container {
   display: grid;
   align-items: center;
   justify-items: center;
@@ -35,7 +35,7 @@ footer#audio-player > section.audio-player-container {
   color: var(--white);
 }
 
-footer#audio-player > section.audio-player-container > section.audio-player-image {
+div#audio-player > section.audio-player-container > section.audio-player-image {
   grid-column: 3;
   grid-row: 1 / 3;
   height: 3.5rem;
@@ -43,18 +43,18 @@ footer#audio-player > section.audio-player-container > section.audio-player-imag
   transform: translateY(-0.25rem);
   overflow: hidden;
 }
-footer#audio-player > section.audio-player-container > section.audio-player-image > img {
+div#audio-player > section.audio-player-container > section.audio-player-image > img {
   min-width: 3.5rem;
   min-height: 3.5rem;
 }
-footer#audio-player > section.audio-player-container > section.audio-player-image > img:first-child {
+div#audio-player > section.audio-player-container > section.audio-player-image > img:first-child {
   filter: brightness(70%) blur(0.5px);
 }
-footer#audio-player > section.audio-player-container > section.audio-player-image > img:last-child {
+div#audio-player > section.audio-player-container > section.audio-player-image > img:last-child {
   transform: translateY(-4.2rem) scale(0.6);
   filter: invert(1);
 }
-footer#audio-player > section.audio-player-container > section.progress {
+div#audio-player > section.audio-player-container > section.progress {
   transition: 0.7s;
   grid-column: 1 / 3;
   border-top: 0.75rem solid var(--white);
@@ -64,15 +64,16 @@ footer#audio-player > section.audio-player-container > section.progress {
   display: none;
 }
 @media (max-width: 500px) {
-  footer#audio-player {
+  div#audio-player {
     opacity: 0.8;
     transition: 0.3s;
     position: fixed;
     bottom: 2.25rem;
-    right: 5.25rem;
-    left: calc(100vw - 8.25rem);
+    right: 2.25rem;
+    left: calc(100vw - 5.25rem);
     height: 3rem;
     width: auto;
+    padding: 0;
     border-radius: 3rem;
     background: var(--light-navy-blue);
     box-shadow: 3px 3px 6px var(--transparent-dark-blue),
@@ -80,7 +81,7 @@ footer#audio-player > section.audio-player-container > section.progress {
                 -2px 2px 4px var(--transparent-blue),
                 3px -3px 6px var(--transparent-dark-blue);
   }
-  footer#audio-player.open {
+  div#audio-player.open {
     opacity: 1;
     left: 1.5rem;
     background: var(--light-navy-blue-thicc);
@@ -104,36 +105,36 @@ footer#audio-player > section.audio-player-container > section.progress {
     height: 2.8rem;
     margin: 0.1rem;
   }
-  footer#audio-player .small-toggle-play {
+  div#audio-player .small-toggle-play {
     display: inline-block;
     cursor: pointer;
     width: 2.8rem;
     height: 2.8rem;
     opacity: 0;
   }
-  footer#audio-player.open .small-toggle-play {
+  div#audio-player.open .small-toggle-play {
     animation: fadeIn;
     animation-duration: 0.2s;
     animation-delay: 0.3s;
     animation-fill-mode: forwards;
   }
-  footer#audio-player .small-toggle-play img {
+  div#audio-player .small-toggle-play img {
     width: 100%;
     filter: invert(1);
   }
-  footer#audio-player .audio-player-small-time {
+  div#audio-player .audio-player-small-time {
     margin-left: 0.1rem;
     align-items: center;
     justify-content: center;
     display: none;
   }
-  footer#audio-player.open .audio-player-small-time {
+  div#audio-player.open .audio-player-small-time {
     display: grid;
     grid-template-columns: 1fr 3rem;
     align-items: center;
     justify-content: center;
   }
-  footer#audio-player .audio-player-small-time span {
+  div#audio-player .audio-player-small-time span {
     vertical-align: middle;
     margin: 0.1rem auto;
     text-align: center;
@@ -143,13 +144,13 @@ footer#audio-player > section.audio-player-container > section.progress {
     letter-spacing: -0.075rem;
     color: var(--white)
   }
-  footer#audio-player.open .audio-player-small-time span {
+  div#audio-player.open .audio-player-small-time span {
     animation: fadeIn;
     animation-duration: 0.3s;
     animation-delay: 0.2s;
     animation-fill-mode: forwards;
   }
-  footer#audio-player > section.audio-player-container {
+  div#audio-player > section.audio-player-container {
     display: none;
   }
 }

@@ -3,6 +3,11 @@ import { useApp } from "../AppProvider";
 import History from '../img/history.png';
 import Plus from '../img/plus.png';
 
+const reduceRawPages = (acc, page) => {
+    if (acc.find (p => page.page === p.page)) return acc;
+    return [...acc, page];
+}
+
 export default function PageList () {
     const app = useApp ();
     const [addPage, setAddPage] = useState (false);
@@ -45,7 +50,7 @@ export default function PageList () {
             <div className="page-container">
                 <h2>General Pages</h2>
                 {
-                    app.pages.pages.filter (page => !page.param).map (page => (
+                    app.pages.rawPages.reduce (reduceRawPages, []).filter (page => !page.param && page.page !== 'footer').map (page => (
                             <p>
                                 <span onClick={app.router.redirect (page.page)}>{page.title} ({page.page})</span>
                                 <span className="action" onClick={viewHistoryOf (page.page)}><img src={History} /></span>
@@ -77,6 +82,7 @@ export default function PageList () {
                         </div>
                         <div>
                             <button onClick={attemptAddPage}>Add Page</button>
+                            <span className="vertical-divider" />
                             <button onClick={reset}>Cancel</button>
                         </div>
                     </div>

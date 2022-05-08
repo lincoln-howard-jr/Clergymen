@@ -10,12 +10,12 @@ export default function useEpisodes (freeze, auth) {
 
   const getEpisodes = () => new Promise (async (resolve, reject) => {
     try {
-      let req = await fetch ('https://d1q33inlkclwle.cloudfront.net/episodes.json')
+      let req = await fetch ('https://resources.theclergymen.com/episodes.json')
       let data = await req.json ();
       data = data.map (e => ({...e, releaseDate: new Date (e.releaseDate)}))
       setEpisodes (data);
       if (!auth.isAuthenticated) return resolve (data);
-      let allEpisodesReq = await fetch (`https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/episodes`, {
+      let allEpisodesReq = await fetch (`https://api.theclergymen.com/episodes`, {
         headers: auth.headers.get
       });
       let allEpisodesData = await allEpisodesReq.json ();
@@ -31,7 +31,7 @@ export default function useEpisodes (freeze, auth) {
   const createEpisode = body => new Promise (async (resolve, reject) => {
     let unfreeze = freeze ();
     try {
-      let req = await fetch (`https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/episodes`, {
+      let req = await fetch (`https://api.theclergymen.com/episodes`, {
         method: 'post',
         headers: auth.headers.post,
         body: JSON.stringify (body)
@@ -46,10 +46,27 @@ export default function useEpisodes (freeze, auth) {
     }
   });
 
+  const updateEpisodes = (id, body) => new Promise (async (resolve, reject) => {
+    let unfreeze = freeze ('updating episode');
+    try {
+      await fetch (`https://api.theclergymen.com/episodes/${id}`, {
+        method: 'put',
+        headers: auth.headers.post,
+        body: JSON.stringify (body)
+      });
+      await getEpisodes ();
+      resolve ();
+    } catch (e) {
+      reject (e);
+    } finally {
+      unfreeze ();
+    }
+  });
+
   const deleteEpisode = id => new Promise (async (resolve, reject) => {
     let unfreeze = freeze ();
     try {
-      await fetch (`https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/episodes/${id}`, {
+      await fetch (`https://api.theclergymen.com/episodes/${id}`, {
         method: 'delete',
         headers: auth.headers.get
       });
@@ -66,6 +83,6 @@ export default function useEpisodes (freeze, auth) {
     getEpisodes ();
   }, [auth.isAuthenticated]);
 
-  return {episodes, allEpisodes, getEpisodes, createEpisode, deleteEpisode};
+  return {episodes, allEpisodes, getEpisodes, createEpisode, updateEpisodes, deleteEpisode};
 
 }

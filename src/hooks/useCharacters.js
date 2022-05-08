@@ -1,39 +1,37 @@
 import { useEffect, useState } from "react";
-import { headers } from "../lib/auth";
 
-export default function useCharacters (freeze) {
+export default function useCharacters (freeze, user, uploads) {
 
   // state management
   const [characters, setCharacters] = useState ([]);
-  const [err, setErr] = useState (null);
 
   // get all characters
   const getCharacters = async () => new Promise (async (resolve, reject) => {
     try {
-      let req = await fetch ('https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/characters');
+      let req = await fetch ('https://api.theclergymen.com/characters', {
+        headers: user.headers.get
+      });
       let characters = await req.json ();
-      setCharacters (characters);
+      setCharacters (characters)
       resolve (characters);
     } catch (e) {
-      setErr (e);
       reject (e);
     } 
   })
 
   // mutators
   const createCharacter = async character => new Promise (async (resolve, reject) => {
-    let unfreeze = freeze ();
+    let unfreeze = freeze (`Adding ${character?.memberName}`);
     try {
-      let req = await fetch ('https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/characters', {
+      let req = await fetch ('https://api.theclergymen.com/characters', {
         method: 'post',
-        headers: headers.post,
+        headers: user.headers.post,
         body: JSON.stringify (character)
       })
       let res = await req.json ();
       await getCharacters ();
       resolve (res);
     } catch (e) {
-      setErr (e);
       reject (e);
     } finally {
       unfreeze ();
@@ -43,16 +41,15 @@ export default function useCharacters (freeze) {
   const updateCharacter = async (id, character) => new Promise (async (resolve, reject) => {
     let unfreeze = freeze ();
     try {
-      let req = await fetch (`https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/characters/${id}`, {
+      let req = await fetch (`https://api.theclergymen.com/characters/${id}`, {
         method: 'PUT',
-        headers: headers.post,
+        headers: user.headers.post,
         body: JSON.stringify (character)
       })
       let res = await req.json ();
       await getCharacters ();
       resolve (res);
     } catch (e) {
-      setErr (e);
       reject (e);
     } finally {
       unfreeze ();
@@ -62,9 +59,9 @@ export default function useCharacters (freeze) {
   const deleteCharacter = async id => new Promise (async (resolve, reject) => {
     let unfreeze = freeze ();
     try {
-      await fetch (`https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/characters/${id}`, {
+      await fetch (`https://api.theclergymen.com/characters/${id}`, {
         method: 'delete',
-        headers: headers.get
+        headers: user.headers.get
       })
       await getCharacters ();
       resolve ();
@@ -79,6 +76,6 @@ export default function useCharacters (freeze) {
     getCharacters ();
   }, []);
 
-  return {characters, err, getCharacters, createCharacter, updateCharacter, deleteCharacter};
+  return {characters, getCharacters, createCharacter, updateCharacter, deleteCharacter};
 
 }

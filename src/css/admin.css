@@ -1,11 +1,102 @@
 /* image selector */
-.image-selector .toolbar {
+.audio-selector .toolbar, .image-selector .toolbar {
     margin: auto;
     width: 3rem;
     cursor: pointer;
 }
-.image-selector .toolbar img {
+.audio-selector .toolbar img, .image-selector .toolbar img {
     width: 3rem;
     height: 3rem;
     object-fit: cover;
+}
+.audio-selector .audio, .image-selector .image {
+  transition: 0.2s;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+.audio-selector .audio:hover {
+  background-color: #d4c29a55;
+}
+.audio-selector .audio, .image-selector .image img {
+  cursor: pointer;
+}
+/* managers */
+
+/* admin episode manager */
+.content-manager .create {
+  cursor: pointer;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  height: 6rem;
+  width: 12rem;
+  margin: 1rem auto;
+}
+.content-manager .create:hover {
+  background-color: #cccccc66;
+}
+.content-manager .create img {
+  width: 4rem;
+}
+.content-manager .episode {
+  width: 60ch;
+  padding: 1ch;
+  border: 1px solid var(--font-color);
+  background-color: #d4c29a55;
+  max-width: 94%;
+  margin: 4rem auto;
+  display: grid;
+  grid-template-columns: 10rem 1fr 1fr;
+  grid-template-rows: 2rem 10rem 2rem ;
+  grid-template-areas:  "title title number"
+                        "image description description"
+                        "release actions actions";
+  gap: 0.5rem;
+}
+.content-manager .episode .title {
+  grid-area: title;
+}
+.content-manager .episode .episode-number {
+  grid-area: number;
+}
+.content-manager .episode .image {
+  grid-area: image;
+  width: 10rem;
+  aspect-ratio: 1;
+}
+.content-manager .episode .description {
+  grid-area: description;
+}
+.content-manager .episode .release {
+  grid-area: release;
+}
+.content-manager .actions {
+  text-align: right;
+  grid-area: actions;
+}
+.content-manager .actions span {
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.25rem;
+  margin: 0 0.5rem;
+}
+.content-manager .actions img {
+  width: 1.5rem;
+  aspect-ratio: 1;
+}
+/* character card */
+div.character-card {
+  cursor: pointer;
+  padding: 1.5rem 0;
+  margin: 0;
+}
+.character-card:hover {
+  background-color: #d4c29a55;
+}
+.character-card .character-name {
+  font-size: calc(var(--font-size) * 1.25);
 }

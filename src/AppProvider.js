@@ -4,6 +4,7 @@ import AudioPlayer from "./components/AudioPlayer";
 import {useAuth, useCharacters, useForm, useRouter, useEpisodes, useChannelInfo, useContact} from './hooks';
 import usePages from "./hooks/usePages";
 import useUploads from "./hooks/useUploads";
+import useIcons from "./img/useIcons";
 // react context api
 const AppContext = createContext ();
 export const useApp = () => React.useContext (AppContext);
@@ -21,8 +22,8 @@ export default function AppProvider ({children}) {
 
   const togglePlay = () => setPodcastPlaying (!podcastPlaying);
   const setPodcast = episode => e => {
-    setPodcastSrc (`https://d1q33inlkclwle.cloudfront.net/${episode.audioSource.url}`)
-    setPodcastCoverPhoto (`https://d1q33inlkclwle.cloudfront.net/${episode.coverPhoto.url}`);
+    setPodcastSrc (`https://resources.theclergymen.com/${episode.audioSource.url}`)
+    setPodcastCoverPhoto (`https://resources.theclergymen.com/${episode.coverPhoto.url}`);
     setPodcastTitle (episode.title);
     setPodcastId (episode.id);
   }
@@ -37,7 +38,6 @@ export default function AppProvider ({children}) {
   }
 
   // hooks
-  const characters = useCharacters (freeze);
   const router = useRouter (freeze);
   const contact = useContact (freeze);
   // called when the user is authenticated
@@ -45,15 +45,35 @@ export default function AppProvider ({children}) {
     contact.getMessages ();
   };
   // auth hook
+  const icons = useIcons;
   const auth = useAuth (onSessionActive, freeze);
-  const channel = useChannelInfo (freeze, auth);
   const uploads = useUploads (auth, freeze);
+  const characters = useCharacters (freeze, auth, uploads);
+  const channel = useChannelInfo (freeze, auth);
   const episodes = useEpisodes (freeze, auth);
   const pages = usePages (router, auth, freeze);
 
+  const value = {
+    useForm,
+    freeze,
+    setPodcast,
+    togglePlay,
+    podcastPlaying,
+    podcastId,
+    icons,
+    router,
+    auth,
+    channel,
+    contact,
+    episodes,
+    uploads,
+    characters,
+    pages,
+  }
+
   // just wrap the whole app component in this
   return (
-    <AppContext.Provider value={{pages, router, auth, characters, uploads, episodes, channel, contact, podcastId, podcastPlaying, togglePlay, setPodcast, freeze, useForm}} >
+    <AppContext.Provider value={value} >
       <div style={{
         display: (!frozen ? 'none' : 'grid'),
         alignItems: 'center',

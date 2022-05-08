@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 const reserved = [
+  'nav',
+  'admin',
   'list-pages',
   'manage-episodes',
   'create-episode',
@@ -17,26 +19,39 @@ export default function usePages (router, user, freeze) {
 
   const [rawPages, setRawPages] = useState ([])
   const [pages, setPages] = useState ([]);
+  const [footer, setFooter] = useState (undefined);
+  const [nav, setNav] = useState (undefined);
   const [currentPage, setCurrentPage] = useState (undefined);
   const [editing, setEditing] = useState (false);
   const [history, setHistory] = useState (false);
 
   const getPages = async () => {
-    if (user.isAuthenticated) {
-      let req = await fetch ('https://38uy900ohj.execute-api.us-east-1.amazonaws.com/Prod/pages', {
-        headers: user.headers.get
-      });
-      let raw = await req.json ();
-      raw.sort ((a, b) => b.createdAt - a.createdAt);
-      setRawPages (raw);
+    try {
+      let r = await fetch ('https://resources.theclergymen.com/pages.json');
+      setPages (await r.json ())
+      if (user.isAuthenticated) {
+        let req = await fetch ('https://api.theclergymen.com/pages', {
+          headers: user.headers.get
+        });
+        let raw = await req.json ();
+        raw.sort ((a, b) => b.createdAt - a.createdAt);
+        setRawPages (raw);
+      }
+    } finally {
     }
-    let r = await fetch ('https://d1q33inlkclwle.cloudfront.net/pages.json');
-    setPages (await r.json ())
+  }
+
+  const getFooter = () => {
+    if (!user.isAuthenticated) return setFooter (pages.find (p => p.page === 'footer'));
+    setFooter (rawPages.find (p => p.page === 'footer'));
   }
 
   const getPageByName = (name, param) => {
-    if (param) return setCurrentPage (pages.find (p => p.page === name && p.param === param))
-    setCurrentPage (pages.find (p => p.page === name));
+    if (!user.isAuthenticated && param) return setCurrentPage (pages.find (p => p.page === name && p.param === param))
+    if (!user.isAuthenticated) return setCurrentPage (pages.find (p => p.page === name));
+    let matches = rawPages.filter (p => p.page === name);
+    if (param) matches = matches.filter (p => p.param === param);
+    setCurrentPage (matches [0])
   }
 
   const updatePage = updatedValue => {
@@ -75,8 +90,12 @@ export default function usePages (router, user, freeze) {
 
   useEffect (() => {
     getPages ();
-  }, [user.isAuthenticated])
+  }, [user.headers.get ['x-amz-id-token']]);
 
-  return {reserved, currentPage, pages, rawPages, editing, history, getPageByName, createPage, updatePage, setPageById, setEditing, setHistory};
+  useEffect (() => {
+    getFooter ();
+  }, [pages, rawPages])
+
+  return {reserved, currentPage, pages, rawPages, editing, footer, history, getPageByName, createPage, updatePage, setPageById, setEditing, setHistory, getFooter};
 
 }

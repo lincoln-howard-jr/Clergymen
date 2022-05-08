@@ -3,6 +3,9 @@
     align-items: center;
     justify-items: center;
     grid-template-rows: 1fr 2rem;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 .editable-image > img {
     width: 67%;
@@ -16,4 +19,24 @@
     display: inline-block;
     width: 2rem;
     height: 2rem;
+}
+.editor-resizing input {
+    padding: 0;
+    width: 6ch;
+    margin: 0;
+    font-size: var(--font-size);
+    border: none;
+    outline: none;
+    text-align: right;
+}
+.add-resize-btn {
+    transition: 0.2s;
+    cursor: pointer;
+    color: var(--font-color-transparent);
+    border: 1px solid var(--font-color-transparent);
+    border-radius: 0.25rem;
+}
+.add-resize-btn:hover {
+    color: var(--font-color);
+    border-color: var(--font-color);
 }

@@ -20,7 +20,7 @@ export default function AudioPlayer ({src, playing, title, togglePlay, photo}) {
     else audioRef.current.pause ();
   }, [playing]);
   return (
-    <footer id="audio-player" className={smallPlayerOpen ? 'open' : ''}>
+    <div id="audio-player" className={smallPlayerOpen ? 'open' : ''}>
       <section className="audio-player-container-small">
         <span onClick={() => setSmallPlayerOpen (!smallPlayerOpen)} className="audio-player-small-image">
           <img alt="" src={photo} />
@@ -54,6 +54,6 @@ export default function AudioPlayer ({src, playing, title, togglePlay, photo}) {
         <section style={{width}} className="progress" />
       </section>
       <audio onTimeUpdate={onProgress} ref={audioRef} src={src} autoPlay />
-    </footer>
+    </div>
   )
 }

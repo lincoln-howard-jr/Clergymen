@@ -12,9 +12,8 @@ export default function Episode (props) {
     }
 
     useEffect (() => {
-        console.log (app.episodes)
         const mode = props.col?.params?.mode || 'most recent';
-        const count = props.col?.params?.count || 1;
+        const count = props.col?.params?.count || 3;
         if (mode === 'most recent') {
             setEpisodes (app.episodes.episodes.slice (0, count))
         }
@@ -24,7 +23,7 @@ export default function Episode (props) {
             {
                 displayEpisodes.map (episode => (
                     <div onClick={episodeOnClick (episode)} className="episode-card">
-                        <img src={`https://d1q33inlkclwle.cloudfront.net/${episode.coverPhoto.url}`} />
+                        <img src={`https://resources.theclergymen.com/${episode.coverPhoto.url}`} />
                         <h2>{episode.title}</h2>
                         <p>{episode.shortDescription}</p>
                     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export default function useRouter () {
   
@@ -7,6 +7,7 @@ export default function useRouter () {
   const [param, setParam] = useState (null)
   
   const redirect = (page, param=null, paramName='id', data={}) => () => {
+    if (page.startsWith ('http')) return window.location.replace (page);
     setPage (page);
     setParam (param);
     window.history.pushState (data, page, `/?page=${page}${param ? `&${paramName}=${param}` : ''}`);

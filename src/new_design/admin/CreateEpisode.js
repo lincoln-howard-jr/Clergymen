@@ -95,7 +95,7 @@ export default function CreateEpisode () {
                                 params: {
                                     sepia: true
                                 },
-                                value: `https://d1q33inlkclwle.cloudfront.net/${coverPhoto}`
+                                value: `${coverPhoto}`
                             }
                         ]
                     },
@@ -182,7 +182,7 @@ export default function CreateEpisode () {
                     <div className="file-input">
                         {
                             !!coverPhotoUrl &&
-                            <img className="file" src={`https://d1q33inlkclwle.cloudfront.net/${coverPhotoUrl}`} />
+                            <img className="file" src={`https://resources.theclergymen.com/${coverPhotoUrl}`} />
                         }
                         <label onClick={() => setSelectingImage (true)}>
                             <img src={Pencil} />
@@ -194,7 +194,7 @@ export default function CreateEpisode () {
                     <div className="file-input">
                         {
                             !!audioSourceUrl &&
-                            <audio className="file" controls src={`https://d1q33inlkclwle.cloudfront.net/${audioSourceUrl}`} />
+                            <audio className="file" controls src={`https://resources.theclergymen.com/${audioSourceUrl}`} />
                         }
                         <label>
                             <img src={Upload} />

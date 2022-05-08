@@ -18,13 +18,15 @@ export default function ManageContent () {
                     <button onClick={app.router.redirect ('edit-info')}>Info</button>
                 </div>
                 <div className="col">
-                    <button onClick={app.router.redirect ('manage-messages')}>Messages</button>
-                </div>
-                <div className="col">
                     <button onClick={app.router.redirect ('manage-media')}>Meida</button>
                 </div>
+            </div>
+            <div className="row cols-2 text-center">
                 <div className="col">
                     <button onClick={app.router.redirect ('list-pages')}>Pages</button>
+                </div>
+                <div className="col">
+                    <button onClick={app.router.redirect ('footer')}>Edit Footer</button>
                 </div>
             </div>
         </main>
